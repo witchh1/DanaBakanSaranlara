@@ -58,30 +58,8 @@ body{background:var(--dark);color:var(--light);font-family:var(--sans);overflow-
 #pageTransition.leaving .pt-panel{transform:scaleX(0);transform-origin:right;transition-delay:.2s}
 #pageTransition.leaving .pt-logo{opacity:0}
 
-/* LIVE SALES BANNER */
-#liveSalesBanner{
-  position:fixed;top:0;left:0;right:0;z-index:490;
-  background:linear-gradient(90deg,rgba(124,58,237,.9),rgba(157,23,77,.9),rgba(124,58,237,.9));
-  background-size:200% 100%;
-  animation:bannerGrad 4s linear infinite;
-  padding:10px 0;border-bottom:1px solid rgba(167,139,250,.2);
-  backdrop-filter:blur(10px);
-  transform:translateY(-100%);transition:transform .5s cubic-bezier(.16,1,.3,1);
-}
-#liveSalesBanner.show{transform:translateY(0)}
-@keyframes bannerGrad{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-.banner-track{display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap}
-.banner-pill{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:12px;color:rgba(255,255,255,.92);font-family:var(--display);letter-spacing:.5px;
-}
-.live-dot{width:7px;height:7px;background:var(--ok);border-radius:50%;animation:pulse 1.5s infinite;flex-shrink:0}
-.banner-close{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,.5);cursor:pointer;font-size:14px;transition:color .2s}
-.banner-close:hover{color:#fff}
-
-/* NAV — adjusted for banner */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:22px 64px;background:rgba(3,0,20,.55);backdrop-filter:blur(24px);border-bottom:1px solid rgba(167,139,250,.07);transition:background .3s,top .5s cubic-bezier(.16,1,.3,1)}
-nav.with-banner{top:38px}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:22px 64px;background:rgba(3,0,20,.55);backdrop-filter:blur(24px);border-bottom:1px solid rgba(167,139,250,.07);transition:background .3s}
 nav.scrolled{background:rgba(3,0,20,.95)}
 .nav-logo{font-family:var(--display);font-size:20px;font-weight:800;letter-spacing:10px;color:#fff;text-shadow:0 0 40px rgba(167,139,250,.7),0 0 80px rgba(167,139,250,.3);position:relative}
 .nav-links{display:flex;align-items:center;gap:4px}
@@ -262,42 +240,7 @@ nav.scrolled{background:rgba(3,0,20,.95)}
 .badge-main{font-family:var(--display);font-size:12px;font-weight:700;color:#fff;letter-spacing:.5px}
 .badge-sub{font-size:10px;color:rgba(148,163,184,.5);letter-spacing:.3px}
 
-/* TESTIMONIALS */
-#testimonials{padding:110px 0;position:relative;z-index:1}
-.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.review-card{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:24px;padding:32px 28px;
-  position:relative;overflow:hidden;transition:all .4s;
-}
-.review-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--pd),var(--primary),var(--s));
-  opacity:0;transition:opacity .4s;
-}
-.review-card:hover{border-color:rgba(167,139,250,.3);transform:translateY(-6px);box-shadow:0 20px 50px rgba(124,58,237,.15)}
-.review-card:hover::before{opacity:1}
-.review-stars{display:flex;gap:4px;margin-bottom:16px}
-.review-stars i{color:var(--gold);font-size:13px}
-.review-quote{
-  font-family:var(--serif);font-size:62px;font-weight:700;
-  line-height:.7;color:rgba(167,139,250,.2);float:left;
-  margin-right:6px;margin-top:4px;
-}
-.review-text{font-size:14px;color:rgba(226,232,240,.78);line-height:1.75;margin-bottom:22px;font-style:italic}
-.review-author{display:flex;align-items:center;gap:12px}
-.review-avatar{
-  width:42px;height:42px;border-radius:50%;
-  background:linear-gradient(135deg,var(--pd),var(--s));
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--display);font-size:15px;font-weight:700;color:#fff;
-  flex-shrink:0;box-shadow:0 4px 12px rgba(124,58,237,.4);
-}
-.review-name{font-size:14px;font-weight:600;color:#fff}
-.review-plan{font-size:11px;color:var(--primary);font-family:var(--display);letter-spacing:1px}
-.review-date{font-size:11px;color:rgba(148,163,184,.35);margin-top:2px}
-
-/* PRICING CARDS - Simple hover scale effect (no 3D tilt) */
+/* PRICING CARDS - 3D TILT EFFECT */
 .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start}
 .price-card{
   background:var(--card);
@@ -306,7 +249,8 @@ nav.scrolled{background:rgba(3,0,20,.95)}
   padding:44px 38px;
   position:relative;
   overflow:hidden;
-  transition:all .4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  transition:all .4s;
+  transform-style:preserve-3d;
   transform-origin:center center;
 }
 .price-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--pd),var(--primary),var(--s))}
@@ -317,11 +261,7 @@ nav.scrolled{background:rgba(3,0,20,.95)}
   opacity:0;transition:opacity .4s;pointer-events:none;z-index:2
 }
 .price-card:hover::after{opacity:1}
-.price-card:hover{
-  border-color:rgba(167,139,250,.32);
-  box-shadow:0 20px 60px rgba(124,58,237,.2),0 0 30px rgba(167,139,250,.08);
-  transform:translateY(-8px) scale(1.02);
-}
+.price-card:hover{border-color:rgba(167,139,250,.32);box-shadow:0 20px 60px rgba(124,58,237,.2),0 0 30px rgba(167,139,250,.08)}
 .price-card.popular{
   border-color:rgba(167,139,250,.42);
   transform:scale(1.04);
@@ -329,7 +269,7 @@ nav.scrolled{background:rgba(3,0,20,.95)}
   box-shadow:0 0 60px rgba(124,58,237,.18),0 30px 60px rgba(0,0,0,.3);
 }
 .price-card.popular:hover{
-  transform:scale(1.04) translateY(-8px);
+  transform:scale(1.04);
 }
 .price-card.popular::after{
   background:linear-gradient(105deg,transparent 20%,rgba(167,139,250,.08) 30%,rgba(244,114,182,.08) 40%,rgba(45,212,191,.07) 50%,rgba(251,191,36,.07) 60%,rgba(167,139,250,.08) 70%,transparent 80%);
@@ -447,7 +387,7 @@ footer{border-top:1px solid var(--border);padding:50px 0 32px;position:relative;
 /* SCROLL PROGRESS BAR */
 #scrollProgress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--pd),var(--primary),var(--s));z-index:9999;width:0%;transition:width .1s linear;pointer-events:none}
 
-@media(max-width:900px){nav{padding:16px 24px}.feat-grid,.price-grid,.reviews-grid{grid-template-columns:1fr}.price-card.popular{transform:none}.hero-stats{gap:28px}.container{padding:0 24px}.login-left{display:none}.login-wrapper{width:100%;border-radius:0;min-height:100vh}.login-right{width:100%;padding:48px 32px}.badges-grid{gap:10px}.trust-badge{padding:10px 14px}}
+@media(max-width:900px){nav{padding:16px 24px}.feat-grid,.price-grid{grid-template-columns:1fr}.price-card.popular{transform:none}.hero-stats{gap:28px}.container{padding:0 24px}.login-left{display:none}.login-wrapper{width:100%;border-radius:0;min-height:100vh}.login-right{width:100%;padding:48px 32px}.badges-grid{gap:10px}.trust-badge{padding:10px 14px}}
 @media(max-width:600px){.nav-a{display:none}.hero-h1{font-size:60px}.ai-panel{width:300px}}
 </style>
 </head>
@@ -468,17 +408,6 @@ footer{border-top:1px solid var(--border);padding:50px 0 32px;position:relative;
 <audio id="bgAudio" loop preload="auto">
   <source src="https://files.catbox.moe/nz68r0.mp3" type="audio/mpeg">
 </audio>
-
-<!-- LIVE SALES BANNER -->
-<div id="liveSalesBanner">
-  <div class="container">
-    <div class="banner-track">
-      <div class="banner-pill"><div class="live-dot"></div><span id="bannerText">🔥 Ahmet K. az önce Lifetime lisans satın aldı</span></div>
-      <div class="banner-pill" style="color:rgba(255,255,255,.55);font-size:11px">Son 24 saatte <strong style="color:#fff" id="bannerCount">12</strong> satış</div>
-    </div>
-  </div>
-  <button class="banner-close" onclick="closeBanner()"><i class="fas fa-times"></i></button>
-</div>
 
 <!-- LOGIN SCREEN -->
 <div id="loginScreen">
@@ -564,7 +493,6 @@ footer{border-top:1px solid var(--border);padding:50px 0 32px;position:relative;
     <div class="nav-links">
       <a href="#features" class="nav-a">Özellikler</a>
       <a href="#pricing" class="nav-a">Fiyatlar</a>
-      <a href="#testimonials" class="nav-a">Yorumlar</a>
       <a href="#faq" class="nav-a">SSS</a>
       <a href="https://discord.gg/d7U6Tj6HqY" target="_blank" class="nav-a"><i class="fab fa-discord"></i> Discord</a>
       <a href="#pricing" class="nav-cta">Satın Al</a>
@@ -672,69 +600,6 @@ footer{border-top:1px solid var(--border);padding:50px 0 32px;position:relative;
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section id="testimonials" class="sec z1">
-    <div class="container">
-      <div class="sec-head reveal"><div class="sec-tag">&#10022; Müşteri Yorumları</div><h2 class="sec-title">Kullanıcılar Ne Diyor?</h2><p class="sec-sub">500+ aktif kullanıcının güvendiği sistem. Gerçek deneyimler, gerçek insanlar.</p></div>
-      <div class="reviews-grid">
-        <div class="review-card reveal">
-          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-          <div class="review-quote">"</div>
-          <p class="review-text">Lifetime aldım, hiç pişman olmadım. 3 farklı bilgisayarda sorunsuz çalışıyor. Destek ekibi de süper hızlı yardımcı oluyor.</p>
-          <div class="review-author">
-            <div class="review-avatar" style="background:linear-gradient(135deg,#7c3aed,#f472b6)">AK</div>
-            <div><div class="review-name">Ahmet K.</div><div class="review-plan">LIFETIME</div><div class="review-date">Mart 2026</div></div>
-          </div>
-        </div>
-        <div class="review-card reveal" style="animation-delay:.1s">
-          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-          <div class="review-quote">"</div>
-          <p class="review-text">Premium planı denedim, 5 dakika içinde lisansım aktifleşti. HWID koruması sayesinde güvende hissediyorum. Kesinlikle tavsiye ederim.</p>
-          <div class="review-author">
-            <div class="review-avatar" style="background:linear-gradient(135deg,#0f6e56,#1d9e75)">MY</div>
-            <div><div class="review-name">Mert Y.</div><div class="review-plan">PREMIUM</div><div class="review-date">Şubat 2026</div></div>
-          </div>
-        </div>
-        <div class="review-card reveal" style="animation-delay:.2s">
-          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
-          <div class="review-quote">"</div>
-          <p class="review-text">Basic planla başladım, sonra Lifetime'a geçtim. Fiyat/performans mükemmel. Railway altyapısı sayesinde hiç kesinti yaşamadım.</p>
-          <div class="review-author">
-            <div class="review-avatar" style="background:linear-gradient(135deg,#ba7517,#ef9f27)">SE</div>
-            <div><div class="review-name">Selin E.</div><div class="review-plan">LİFETIME</div><div class="review-date">Ocak 2026</div></div>
-          </div>
-        </div>
-        <div class="review-card reveal" style="animation-delay:.05s">
-          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-          <div class="review-quote">"</div>
-          <p class="review-text">Discord desteği inanılmaz. Gece 2'de sorun yaşadım, 10 dakika içinde çözüldü. Bu tür bir destek başka hiçbir yerde yok.</p>
-          <div class="review-author">
-            <div class="review-avatar" style="background:linear-gradient(135deg,#993556,#d4537e)">KD</div>
-            <div><div class="review-name">Kerem D.</div><div class="review-plan">PREMIUM</div><div class="review-date">Mart 2026</div></div>
-          </div>
-        </div>
-        <div class="review-card reveal" style="animation-delay:.15s">
-          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-          <div class="review-quote">"</div>
-          <p class="review-text">Güvenli altyapı ve hızlı teslimat. Lisansımı aldım, anında çalıştı. Sistem çok stabil, hiç sorun yaşamadım. Teşekkürler WITCH!</p>
-          <div class="review-author">
-            <div class="review-avatar" style="background:linear-gradient(135deg,#185fa5,#378add)">ZA</div>
-            <div><div class="review-name">Zeynep A.</div><div class="review-plan">BASIC</div><div class="review-date">Şubat 2026</div></div>
-          </div>
-        </div>
-        <div class="review-card reveal" style="animation-delay:.25s">
-          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-          <div class="review-quote">"</div>
-          <p class="review-text">Rakiplerle kıyasladım, WITCH en iyi seçenek. HWID koruması, Railway altyapısı ve gerçek 7/24 destek. Piyasada benzeri yok.</p>
-          <div class="review-author">
-            <div class="review-avatar" style="background:linear-gradient(135deg,#3b6d11,#639922)">CK</div>
-            <div><div class="review-name">Can K.</div><div class="review-plan">LİFETIME</div><div class="review-date">Ocak 2026</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section id="faq" class="sec z1">
     <div class="container">
       <div class="sec-head reveal"><div class="sec-tag">&#10022; SSS</div><h2 class="sec-title">Aklındaki Sorular</h2></div>
@@ -757,7 +622,6 @@ footer{border-top:1px solid var(--border);padding:50px 0 32px;position:relative;
         <div class="foot-links">
           <a href="#features" class="foot-a">Özellikler</a>
           <a href="#pricing" class="foot-a">Fiyatlar</a>
-          <a href="#testimonials" class="foot-a">Yorumlar</a>
           <a href="#faq" class="foot-a">SSS</a>
           <a href="/terms-of-service.html" class="foot-a">Kullanım Şartları</a>
           <a href="/privacy-policy.html" class="foot-a">Gizlilik</a>
@@ -815,34 +679,6 @@ function dismissToast(t){
   t.classList.add('out');
   setTimeout(()=>t.remove(), 350);
 }
-
-/* ======== LIVE SALES BANNER ======== */
-const salesNames = ['Ahmet K.','Mert Y.','Selin E.','Kerem D.','Zeynep A.','Can K.','Burak S.','Deniz M.','Arda T.','Elif P.'];
-const salesPlans = ['Lifetime lisans','Premium Plan','Basic Plan','Lifetime lisans'];
-const emojis = ['🔥','⚡','✨','💜','🚀'];
-let bannerCount = 12;
-function updateBanner() {
-  const name = salesNames[Math.floor(Math.random()*salesNames.length)];
-  const plan = salesPlans[Math.floor(Math.random()*salesPlans.length)];
-  const em   = emojis[Math.floor(Math.random()*emojis.length)];
-  bannerCount++;
-  document.getElementById('bannerText').textContent = `${em} ${name} az önce ${plan} satın aldı`;
-  document.getElementById('bannerCount').textContent = bannerCount;
-}
-function closeBanner() {
-  const b = document.getElementById('liveSalesBanner');
-  b.style.transition='transform .4s ease';
-  b.style.transform='translateY(-100%)';
-  const nav = document.getElementById('navbar');
-  nav.classList.remove('with-banner');
-  clearInterval(window._bannerInterval);
-}
-setTimeout(()=>{
-  const b = document.getElementById('liveSalesBanner');
-  b.classList.add('show');
-  document.getElementById('navbar').classList.add('with-banner');
-  window._bannerInterval = setInterval(()=>{ updateBanner(); }, 7000);
-}, 2500);
 
 /* ======== LOGIN PARTICLES ======== */
 (function(){
@@ -1004,7 +840,6 @@ function initSite(){
   window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50));
 
   setTimeout(()=>showToast('Hoş Geldiniz!','WITCH License Store\'a giriş yaptınız.','success',4000),1200);
-  setTimeout(()=>showToast('Canlı Satış','Mert Y. az önce Premium Plan satın aldı. 🔥','info',5000),6000);
 
   // PARALLAX
   window.addEventListener('scroll',()=>{
@@ -1019,34 +854,36 @@ function initSite(){
     if(desc)desc.style.transform='translateY('+sy*.08+'px)';
   },{passive:true});
 
-  // Simple hover effect for price cards (scale and lift only - no 3D tilt)
+  // 3D TILT effect for price cards (original 3D rotation)
   document.querySelectorAll('.price-card').forEach(card=>{
-    card.addEventListener('mouseenter',()=>{
-      const isPopular = card.classList.contains('popular');
-      if(isPopular){
-        card.style.transform = 'scale(1.04) translateY(-8px)';
-      } else {
-        card.style.transform = 'translateY(-8px) scale(1.02)';
-      }
+    card.addEventListener('mousemove',e=>{
+      const r=card.getBoundingClientRect();
+      const x=e.clientX-r.left;const y=e.clientY-r.top;
+      const mx=x/r.width-.5;const my=y/r.height-.5;
+      const isPopular=card.classList.contains('popular');
+      const base=isPopular?1.04:1;
+      card.style.transform='scale('+base+') perspective(800px) rotateY('+(mx*14)+'deg) rotateX('+(-my*14)+'deg)';
+      card.style.boxShadow='0 20px 60px rgba(124,58,237,.25),'+(mx*20)+'px '+(my*20)+'px 40px rgba(167,139,250,.12)';
     });
     card.addEventListener('mouseleave',()=>{
-      const isPopular = card.classList.contains('popular');
-      if(isPopular){
-        card.style.transform = 'scale(1.04)';
-      } else {
-        card.style.transform = '';
-      }
+      const isPopular=card.classList.contains('popular');
+      card.style.transform=isPopular?'scale(1.04)':'';
+      card.style.boxShadow='';card.style.transition='all .5s ease';
+      setTimeout(()=>card.style.transition='',500);
     });
+    card.addEventListener('mouseenter',()=>{card.style.transition='none';});
   });
 
-  // Simple hover effect for feat cards (lift only - no 3D tilt)
+  // 3D TILT effect for feature cards
   document.querySelectorAll('.feat-card').forEach(card=>{
-    card.addEventListener('mouseenter',()=>{
-      card.style.transform = 'translateY(-8px)';
+    card.addEventListener('mousemove',e=>{
+      const r=card.getBoundingClientRect();
+      const mx=((e.clientX-r.left)/r.width-.5);
+      const my=((e.clientY-r.top)/r.height-.5);
+      card.style.transform='perspective(600px) rotateY('+(mx*10)+'deg) rotateX('+(-my*10)+'deg) translateY(-8px)';
     });
-    card.addEventListener('mouseleave',()=>{
-      card.style.transform = '';
-    });
+    card.addEventListener('mouseleave',()=>{card.style.transform='';card.style.transition='all .5s ease';setTimeout(()=>card.style.transition='',500);});
+    card.addEventListener('mouseenter',()=>{card.style.transition='none';});
   });
 
   // keyboard shortcuts
