@@ -21,11 +21,41 @@
 html{scroll-behavior:smooth}
 body{background:var(--dark);color:var(--light);font-family:var(--sans);overflow-x:hidden;cursor:none}
 
-/* ======== CUSTOM CURSOR ======== */
-#cursor{position:fixed;width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--s));pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:transform .1s,width .25s,height .25s,opacity .25s;mix-blend-mode:screen}
-#cursor-ring{position:fixed;width:36px;height:36px;border-radius:50%;border:1.5px solid rgba(167,139,250,.5);pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:transform .12s ease-out,width .3s,height .3s,border-color .3s;mix-blend-mode:screen}
-body.cursor-hover #cursor{width:20px;height:20px;opacity:.8}
-body.cursor-hover #cursor-ring{width:52px;height:52px;border-color:rgba(244,114,182,.6)}
+/* ======== CUSTOM CURSOR — YENİ TASARIM ======== */
+#cursor-outer{
+  position:fixed;width:40px;height:40px;border-radius:50%;
+  pointer-events:none;z-index:99999;
+  transform:translate(-50%,-50%);
+  transition:transform .15s ease-out,width .35s cubic-bezier(.16,1,.3,1),height .35s cubic-bezier(.16,1,.3,1),opacity .3s;
+  mix-blend-mode:normal;
+}
+#cursor-outer svg{width:100%;height:100%;animation:cursorSpin 6s linear infinite}
+@keyframes cursorSpin{to{transform:rotate(360deg)}}
+#cursor-dot{
+  position:fixed;width:6px;height:6px;border-radius:50%;
+  background:linear-gradient(135deg,var(--primary),var(--s));
+  pointer-events:none;z-index:99999;
+  transform:translate(-50%,-50%);
+  transition:transform .06s,width .25s,height .25s;
+  box-shadow:0 0 10px rgba(167,139,250,.9),0 0 20px rgba(244,114,182,.5);
+}
+#cursor-trail{
+  position:fixed;width:18px;height:18px;border-radius:50%;
+  border:1px solid rgba(167,139,250,.35);
+  pointer-events:none;z-index:99997;
+  transform:translate(-50%,-50%);
+  transition:transform .2s ease-out;
+}
+/* hover state */
+body.cursor-hover #cursor-outer{width:60px;height:60px;opacity:.7}
+body.cursor-hover #cursor-dot{width:4px;height:4px;opacity:.5}
+body.cursor-hover #cursor-trail{width:10px;height:10px;border-color:rgba(244,114,182,.5)}
+/* click state */
+body.cursor-click #cursor-dot{transform:translate(-50%,-50%) scale(2.5);opacity:.4}
+
+/* CURSOR PARTICLES */
+.cpar{position:fixed;border-radius:50%;pointer-events:none;z-index:99990;animation:cparAnim .6s forwards}
+@keyframes cparAnim{0%{opacity:.8;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(0)}}
 
 /* BG */
 .bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
@@ -41,7 +71,62 @@ body.cursor-hover #cursor-ring{width:52px;height:52px;border-color:rgba(244,114,
 .site-particle{position:fixed;border-radius:50%;pointer-events:none;z-index:1;opacity:0;animation:spar linear infinite}
 @keyframes spar{0%{transform:translateY(105vh) rotate(0deg);opacity:0}8%{opacity:.6}92%{opacity:.5}100%{transform:translateY(-80px) rotate(360deg);opacity:0}}
 
-/* ======== MUSIC PLAYER ======== */
+/* PAGE TRANSITION */
+#pageTransition{
+  position:fixed;inset:0;z-index:999999;pointer-events:none;
+  display:flex;align-items:center;justify-content:center;
+}
+.pt-panel{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--dark2),rgba(91,33,182,.95));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .5s cubic-bezier(.76,0,.24,1);
+}
+.pt-logo{
+  position:relative;z-index:2;
+  font-family:var(--display);font-size:64px;font-weight:800;
+  letter-spacing:14px;color:#fff;opacity:0;
+  text-shadow:0 0 60px rgba(167,139,250,.9);
+  transition:opacity .3s;
+}
+#pageTransition.entering .pt-panel{transform:scaleX(1)}
+#pageTransition.entering .pt-logo{opacity:1;transition-delay:.25s}
+#pageTransition.leaving .pt-panel{transform:scaleX(0);transform-origin:right;transition-delay:.2s}
+#pageTransition.leaving .pt-logo{opacity:0}
+
+/* LIVE SALES BANNER */
+#liveSalesBanner{
+  position:fixed;top:0;left:0;right:0;z-index:490;
+  background:linear-gradient(90deg,rgba(124,58,237,.9),rgba(157,23,77,.9),rgba(124,58,237,.9));
+  background-size:200% 100%;
+  animation:bannerGrad 4s linear infinite;
+  padding:10px 0;border-bottom:1px solid rgba(167,139,250,.2);
+  backdrop-filter:blur(10px);
+  transform:translateY(-100%);transition:transform .5s cubic-bezier(.16,1,.3,1);
+}
+#liveSalesBanner.show{transform:translateY(0)}
+@keyframes bannerGrad{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.banner-track{display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap}
+.banner-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;color:rgba(255,255,255,.92);font-family:var(--display);letter-spacing:.5px;
+}
+.live-dot{width:7px;height:7px;background:var(--ok);border-radius:50%;animation:pulse 1.5s infinite;flex-shrink:0}
+.banner-close{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,.5);cursor:none;font-size:14px;transition:color .2s}
+.banner-close:hover{color:#fff}
+
+/* NAV — adjusted for banner */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:22px 64px;background:rgba(3,0,20,.55);backdrop-filter:blur(24px);border-bottom:1px solid rgba(167,139,250,.07);transition:background .3s,top .5s cubic-bezier(.16,1,.3,1)}
+nav.with-banner{top:38px}
+nav.scrolled{background:rgba(3,0,20,.95)}
+.nav-logo{font-family:var(--display);font-size:20px;font-weight:800;letter-spacing:10px;color:#fff;text-shadow:0 0 40px rgba(167,139,250,.7),0 0 80px rgba(167,139,250,.3);position:relative}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-a{padding:8px 18px;color:rgba(226,232,240,.6);text-decoration:none;font-size:13px;font-weight:500;border-radius:30px;transition:all .3s;letter-spacing:.3px}
+.nav-a:hover{color:#fff;background:rgba(167,139,250,.1)}
+.nav-cta{padding:11px 26px;margin-left:8px;background:linear-gradient(135deg,var(--pd),var(--primary));color:#fff;border:none;border-radius:30px;font-size:13px;font-weight:700;font-family:var(--sans);cursor:none;text-decoration:none;transition:all .3s;box-shadow:0 4px 20px rgba(124,58,237,.38)}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(124,58,237,.6)}
+
+/* MUSIC */
 .music-control{position:fixed;bottom:32px;left:28px;z-index:9000;display:flex;align-items:center;gap:12px;background:rgba(10,5,25,.88);backdrop-filter:blur(20px);border:1px solid rgba(167,139,250,.2);border-radius:50px;padding:10px 18px 10px 12px;box-shadow:0 8px 32px rgba(0,0,0,.45);transition:all .4s cubic-bezier(.16,1,.3,1)}
 .music-control:hover{border-color:rgba(167,139,250,.4);box-shadow:0 8px 32px rgba(0,0,0,.4),0 0 22px rgba(167,139,250,.15)}
 .music-toggle-btn{width:36px;height:36px;background:linear-gradient(135deg,var(--primary),var(--s));border:none;border-radius:50%;color:#030014;font-size:13px;cursor:none;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .3s;box-shadow:0 4px 12px rgba(167,139,250,.4)}
@@ -60,16 +145,6 @@ body.cursor-hover #cursor-ring{width:52px;height:52px;border-color:rgba(244,114,
 .vol-icon{font-size:12px;color:rgba(167,139,250,.65);flex-shrink:0}
 .vol-range{-webkit-appearance:none;width:100%;height:3px;border-radius:3px;outline:none;cursor:none;background:linear-gradient(to right,var(--primary) 40%,rgba(167,139,250,.15) 40%)}
 .vol-range::-webkit-slider-thumb{-webkit-appearance:none;width:13px;height:13px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--s));box-shadow:0 2px 8px rgba(167,139,250,.55)}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:22px 64px;background:rgba(3,0,20,.55);backdrop-filter:blur(24px);border-bottom:1px solid rgba(167,139,250,.07);transition:background .3s}
-nav.scrolled{background:rgba(3,0,20,.95)}
-.nav-logo{font-family:var(--display);font-size:20px;font-weight:800;letter-spacing:10px;color:#fff;text-shadow:0 0 40px rgba(167,139,250,.7),0 0 80px rgba(167,139,250,.3);position:relative}
-.nav-links{display:flex;align-items:center;gap:4px}
-.nav-a{padding:8px 18px;color:rgba(226,232,240,.6);text-decoration:none;font-size:13px;font-weight:500;border-radius:30px;transition:all .3s;letter-spacing:.3px}
-.nav-a:hover{color:#fff;background:rgba(167,139,250,.1)}
-.nav-cta{padding:11px 26px;margin-left:8px;background:linear-gradient(135deg,var(--pd),var(--primary));color:#fff;border:none;border-radius:30px;font-size:13px;font-weight:700;font-family:var(--sans);cursor:none;text-decoration:none;transition:all .3s;box-shadow:0 4px 20px rgba(124,58,237,.38)}
-.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(124,58,237,.6)}
 
 /* LOGIN SCREEN */
 #loginScreen{position:fixed;top:0;left:0;width:100%;height:100%;background:#030014;z-index:99999;display:flex;align-items:center;justify-content:center;overflow:hidden}
@@ -101,7 +176,7 @@ nav.scrolled{background:rgba(3,0,20,.95)}
 .login-feature-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--primary),var(--s));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;color:#030014;flex-shrink:0}
 .login-feature span{font-size:13px;color:rgba(226,232,240,.75);font-weight:500}
 .login-version{position:relative;z-index:2;font-size:11px;color:rgba(148,163,184,.35);letter-spacing:2px}
-.login-right{width:400px;background:rgba(8,4,20,.97);padding:50px 45px;display:flex;flex-direction:column;justify-content:center;position:relative}
+.login-right{width:400px;background:rgba(8,4,20,.97);padding:50px 45px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow-y:auto;max-height:100%}
 .login-right::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--primary),var(--s),transparent)}
 .tab-row{display:flex;gap:4px;margin-bottom:28px}
 .tab-btn{flex:1;padding:12px;background:transparent;border:1px solid var(--border);border-radius:12px;color:var(--gray);font-size:12px;font-weight:700;font-family:var(--display);letter-spacing:1.5px;cursor:none;transition:all .3s}
@@ -116,7 +191,7 @@ nav.scrolled{background:rgba(3,0,20,.95)}
 .login-field{position:relative;margin-bottom:18px}
 .login-field label{display:block;font-size:10px;letter-spacing:2.5px;color:rgba(148,163,184,.55);margin-bottom:8px;text-transform:uppercase;font-family:var(--display)}
 .login-field-inner{position:relative}
-.login-field input{width:100%;padding:15px 48px 15px 18px;background:rgba(167,139,250,.04);border:1px solid rgba(167,139,250,.12);border-radius:14px;color:var(--light);font-size:14px;font-family:var(--sans);transition:all .3s;letter-spacing:.5px;outline:none}
+.login-field input{width:100%;padding:15px 48px 15px 18px;background:rgba(167,139,250,.04);border:1px solid rgba(167,139,250,.12);border-radius:14px;color:var(--light);font-size:14px;font-family:var(--sans);transition:all .3s;letter-spacing:.5px;outline:none;cursor:none}
 .login-field input:focus{border-color:var(--primary);background:rgba(167,139,250,.07);box-shadow:0 0 0 3px rgba(167,139,250,.1)}
 .login-field input::placeholder{color:rgba(148,163,184,.22);font-size:13px}
 .eye-toggle{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:rgba(148,163,184,.35);cursor:none;font-size:14px;transition:color .3s}
@@ -135,11 +210,21 @@ nav.scrolled{background:rgba(3,0,20,.95)}
 .switch-txt{text-align:center;margin-top:18px;font-size:13px;color:var(--gray)}
 .switch-txt span{color:var(--pl);cursor:none;font-weight:600;transition:color .2s}
 .switch-txt span:hover{color:var(--s)}
+.forgot-link{display:block;text-align:right;font-size:12px;color:rgba(148,163,184,.45);cursor:none;margin-top:-10px;margin-bottom:18px;transition:color .3s}
+.forgot-link:hover{color:var(--pl)}
 .login-discord{margin-top:26px;text-align:center;font-size:12px;color:rgba(148,163,184,.35);letter-spacing:.5px}
 .login-discord a{color:var(--primary);text-decoration:none;transition:color .3s}
 .login-discord a:hover{color:var(--s)}
 .login-shake{animation:shake .5s ease!important}
 @keyframes shake{0%,100%{transform:none}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+
+/* FORGOT PASSWORD PANEL */
+#paneForgot{display:none}
+#paneForgot.active{display:block}
+.back-link{display:inline-flex;align-items:center;gap:8px;color:var(--gray);font-size:13px;cursor:none;margin-bottom:24px;transition:color .3s}
+.back-link:hover{color:var(--primary)}
+.forgot-title{font-family:var(--serif);font-size:28px;font-weight:700;color:#fff;margin-bottom:6px}
+.forgot-sub{font-size:13px;color:var(--gray);margin-bottom:24px;line-height:1.6}
 
 /* MAIN SITE */
 #mainSite{display:none}
@@ -153,12 +238,11 @@ nav.scrolled{background:rgba(3,0,20,.95)}
 .reveal{opacity:0;transform:translateY(28px);transition:all .7s ease}
 .reveal.visible{opacity:1;transform:none}
 
-/* HERO + PARALLAX */
+/* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px 40px 90px;position:relative;overflow:hidden}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.2);border-radius:50px;padding:9px 24px;font-family:var(--display);font-size:11px;letter-spacing:3px;color:var(--pl);margin-bottom:36px;animation:fadeUp .8s ease backwards}
 .hero-badge i{animation:pulse 2s infinite;color:var(--ok)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-/* GLITCH */
 .hero-h1{font-family:var(--display);font-size:clamp(90px,16vw,160px);font-weight:800;line-height:.9;letter-spacing:18px;margin-bottom:8px;animation:fadeUp .8s ease .1s backwards;position:relative}
 .hero-h1 .line1{display:block;color:#fff;text-shadow:0 0 60px rgba(167,139,250,.75),0 0 120px rgba(167,139,250,.4);position:relative}
 .hero-h1 .line1::before,.hero-h1 .line1::after{content:'WITCH';position:absolute;top:0;left:0;right:0;text-align:center}
@@ -190,26 +274,75 @@ nav.scrolled{background:rgba(3,0,20,.95)}
 .feat-title{font-family:var(--serif);font-size:22px;font-weight:700;margin-bottom:10px;color:#fff}
 .feat-desc{font-size:14px;color:var(--gray);line-height:1.78}
 
-/* HOLOGRAPHIC PRICING CARDS */
+/* TRUST BADGES */
+#trust{padding:60px 0;position:relative;z-index:1}
+.trust-inner{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:40px 0}
+.trust-title{text-align:center;font-family:var(--display);font-size:10px;letter-spacing:4px;color:rgba(148,163,184,.4);margin-bottom:32px;text-transform:uppercase}
+.badges-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
+.trust-badge{
+  display:flex;align-items:center;gap:10px;
+  background:rgba(20,10,45,.7);
+  border:1px solid rgba(167,139,250,.12);
+  border-radius:50px;padding:12px 22px;
+  transition:all .35s;position:relative;overflow:hidden;
+}
+.trust-badge::before{
+  content:'';position:absolute;inset:0;border-radius:50px;
+  background:linear-gradient(90deg,transparent,rgba(167,139,250,.06),transparent);
+  transform:translateX(-100%);transition:transform .5s;
+}
+.trust-badge:hover{border-color:rgba(167,139,250,.35);transform:translateY(-3px);box-shadow:0 8px 24px rgba(124,58,237,.18)}
+.trust-badge:hover::before{transform:translateX(100%)}
+.badge-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--pd),var(--primary));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;flex-shrink:0}
+.badge-text{display:flex;flex-direction:column}
+.badge-main{font-family:var(--display);font-size:12px;font-weight:700;color:#fff;letter-spacing:.5px}
+.badge-sub{font-size:10px;color:rgba(148,163,184,.5);letter-spacing:.3px}
+
+/* TESTIMONIALS */
+#testimonials{padding:110px 0;position:relative;z-index:1}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.review-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:24px;padding:32px 28px;
+  position:relative;overflow:hidden;transition:all .4s;
+}
+.review-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--pd),var(--primary),var(--s));
+  opacity:0;transition:opacity .4s;
+}
+.review-card:hover{border-color:rgba(167,139,250,.3);transform:translateY(-6px);box-shadow:0 20px 50px rgba(124,58,237,.15)}
+.review-card:hover::before{opacity:1}
+.review-stars{display:flex;gap:4px;margin-bottom:16px}
+.review-stars i{color:var(--gold);font-size:13px}
+.review-quote{
+  font-family:var(--serif);font-size:62px;font-weight:700;
+  line-height:.7;color:rgba(167,139,250,.2);float:left;
+  margin-right:6px;margin-top:4px;
+}
+.review-text{font-size:14px;color:rgba(226,232,240,.78);line-height:1.75;margin-bottom:22px;font-style:italic}
+.review-author{display:flex;align-items:center;gap:12px}
+.review-avatar{
+  width:42px;height:42px;border-radius:50%;
+  background:linear-gradient(135deg,var(--pd),var(--s));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-size:15px;font-weight:700;color:#fff;
+  flex-shrink:0;box-shadow:0 4px 12px rgba(124,58,237,.4);
+}
+.review-name{font-size:14px;font-weight:600;color:#fff}
+.review-plan{font-size:11px;color:var(--primary);font-family:var(--display);letter-spacing:1px}
+.review-date{font-size:11px;color:rgba(148,163,184,.35);margin-top:2px}
+
+/* PRICING */
 .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start}
 .price-card{background:var(--card);border:1px solid var(--border);border-radius:30px;padding:44px 38px;position:relative;overflow:hidden;transition:all .4s;transform-style:preserve-3d;transform-origin:center center}
 .price-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--pd),var(--primary),var(--s))}
-/* holographic shimmer overlay */
-.price-card::after{
-  content:'';position:absolute;inset:0;border-radius:30px;
-  background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.06) 50%,transparent 60%),
-  linear-gradient(125deg,rgba(167,139,250,.0) 0%,rgba(244,114,182,.04) 25%,rgba(45,212,191,.04) 50%,rgba(167,139,250,.04) 75%,rgba(244,114,182,.0) 100%);
-  opacity:0;transition:opacity .4s;pointer-events:none;z-index:2
-}
+.price-card::after{content:'';position:absolute;inset:0;border-radius:30px;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.06) 50%,transparent 60%),linear-gradient(125deg,rgba(167,139,250,.0) 0%,rgba(244,114,182,.04) 25%,rgba(45,212,191,.04) 50%,rgba(167,139,250,.04) 75%,rgba(244,114,182,.0) 100%);opacity:0;transition:opacity .4s;pointer-events:none;z-index:2}
 .price-card:hover::after{opacity:1}
 .price-card:hover{border-color:rgba(167,139,250,.32);box-shadow:0 20px 60px rgba(124,58,237,.2),0 0 30px rgba(167,139,250,.08)}
 .price-card.popular{border-color:rgba(167,139,250,.42);transform:scale(1.04);background:rgba(91,33,182,.12);box-shadow:0 0 60px rgba(124,58,237,.18),0 30px 60px rgba(0,0,0,.3)}
 .price-card.popular:hover{transform:scale(1.04)}
-/* rainbow foil on popular */
-.price-card.popular::after{
-  background:linear-gradient(105deg,transparent 20%,rgba(167,139,250,.08) 30%,rgba(244,114,182,.08) 40%,rgba(45,212,191,.07) 50%,rgba(251,191,36,.07) 60%,rgba(167,139,250,.08) 70%,transparent 80%);
-  opacity:.6;animation:foilShift 4s linear infinite
-}
+.price-card.popular::after{background:linear-gradient(105deg,transparent 20%,rgba(167,139,250,.08) 30%,rgba(244,114,182,.08) 40%,rgba(45,212,191,.07) 50%,rgba(251,191,36,.07) 60%,rgba(167,139,250,.08) 70%,transparent 80%);opacity:.6;animation:foilShift 4s linear infinite}
 @keyframes foilShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 .p-badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--pd),var(--s));color:#fff;font-family:var(--display);font-size:10px;letter-spacing:2px;padding:5px 14px;border-radius:50px;margin-bottom:22px}
 .p-name{font-family:var(--serif);font-size:30px;font-weight:700;color:#fff;margin-bottom:6px}
@@ -243,6 +376,32 @@ nav.scrolled{background:rgba(3,0,20,.95)}
 .faq-item.open .faq-a{max-height:220px;padding:0 28px 22px}
 .faq-a a{color:var(--pl)}
 
+/* TOAST NOTIFICATIONS */
+#toastContainer{position:fixed;top:24px;right:24px;z-index:999998;display:flex;flex-direction:column;gap:10px;pointer-events:none}
+.toast{
+  display:flex;align-items:center;gap:12px;
+  background:rgba(10,5,25,.95);backdrop-filter:blur(20px);
+  border:1px solid rgba(167,139,250,.2);border-radius:16px;
+  padding:14px 18px;min-width:280px;max-width:360px;
+  pointer-events:all;
+  animation:toastIn .4s cubic-bezier(.16,1,.3,1);
+  box-shadow:0 16px 40px rgba(0,0,0,.5);
+}
+.toast.out{animation:toastOut .35s ease forwards}
+@keyframes toastIn{from{opacity:0;transform:translateX(60px) scale(.95)}to{opacity:1;transform:none}}
+@keyframes toastOut{to{opacity:0;transform:translateX(60px) scale(.95)}}
+.toast-icon{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.toast.success .toast-icon{background:rgba(74,222,128,.12);color:var(--ok)}
+.toast.error .toast-icon{background:rgba(248,113,113,.12);color:var(--err)}
+.toast.info .toast-icon{background:rgba(167,139,250,.12);color:var(--primary)}
+.toast-body{flex:1}
+.toast-title{font-size:13px;font-weight:600;color:#fff;margin-bottom:2px}
+.toast-msg{font-size:12px;color:var(--gray);line-height:1.4}
+.toast-close{color:rgba(148,163,184,.3);cursor:none;font-size:12px;transition:color .2s;background:none;border:none;flex-shrink:0}
+.toast-close:hover{color:#fff}
+.toast-progress{position:absolute;bottom:0;left:0;height:2px;border-radius:0 0 16px 16px;background:linear-gradient(90deg,var(--primary),var(--s));animation:toastProgress linear forwards}
+@keyframes toastProgress{from{width:100%}to{width:0}}
+
 /* AI */
 .ai-wrap{position:fixed;bottom:28px;right:28px;z-index:800}
 .ai-fab{width:62px;height:62px;background:linear-gradient(135deg,var(--pd),var(--primary),var(--s));border:none;border-radius:50%;color:#fff;font-size:22px;cursor:none;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(124,58,237,.5);transition:all .3s;animation:aiPulse 3s ease-in-out infinite}
@@ -273,7 +432,7 @@ nav.scrolled{background:rgba(3,0,20,.95)}
 .ai-sg{padding:5px 12px;background:rgba(167,139,250,.07);border:1px solid var(--border);border-radius:50px;font-size:11px;color:var(--pl);cursor:none;transition:all .2s;white-space:nowrap}
 .ai-sg:hover{background:rgba(167,139,250,.18);border-color:var(--primary)}
 .ai-input-row{padding:12px 14px;border-top:1px solid var(--border);display:flex;gap:8px;align-items:center}
-.ai-input{flex:1;padding:10px 14px;background:rgba(167,139,250,.05);border:1px solid var(--border);border-radius:20px;color:var(--light);font-size:13px;font-family:var(--sans);outline:none;transition:all .3s}
+.ai-input{flex:1;padding:10px 14px;background:rgba(167,139,250,.05);border:1px solid var(--border);border-radius:20px;color:var(--light);font-size:13px;font-family:var(--sans);outline:none;transition:all .3s;cursor:none}
 .ai-input:focus{border-color:var(--primary);background:rgba(167,139,250,.09)}
 .ai-send{width:36px;height:36px;background:linear-gradient(135deg,var(--pd),var(--primary));border:none;border-radius:50%;color:#fff;font-size:12px;cursor:none;display:flex;align-items:center;justify-content:center;transition:all .3s}
 .ai-send:hover{transform:scale(1.1)}
@@ -293,19 +452,62 @@ footer{border-top:1px solid var(--border);padding:50px 0 32px;position:relative;
 .disc-btn:hover{background:rgba(88,101,242,.2);transform:translateY(-2px)}
 .foot-copy{text-align:center;margin-top:24px;font-size:11px;color:rgba(148,163,184,.28);font-family:var(--display);letter-spacing:2px}
 
-@media(max-width:900px){nav{padding:16px 24px}.feat-grid,.price-grid{grid-template-columns:1fr}.price-card.popular{transform:none}.hero-stats{gap:28px}.container{padding:0 24px}.login-left{display:none}.login-wrapper{width:100%;border-radius:0;min-height:100vh}.login-right{width:100%;padding:48px 32px}body{cursor:auto}#cursor,#cursor-ring{display:none}}
+/* SCROLL PROGRESS BAR */
+#scrollProgress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--pd),var(--primary),var(--s));z-index:9999;width:0%;transition:width .1s linear;pointer-events:none}
+
+@media(max-width:900px){nav{padding:16px 24px}.feat-grid,.price-grid,.reviews-grid{grid-template-columns:1fr}.price-card.popular{transform:none}.hero-stats{gap:28px}.container{padding:0 24px}.login-left{display:none}.login-wrapper{width:100%;border-radius:0;min-height:100vh}.login-right{width:100%;padding:48px 32px}body{cursor:auto}#cursor-outer,#cursor-dot,#cursor-trail{display:none}.badges-grid{gap:10px}.trust-badge{padding:10px 14px}}
 @media(max-width:600px){.nav-a{display:none}.hero-h1{font-size:60px}.ai-panel{width:300px}}
 </style>
 </head>
 <body>
 
 <!-- CUSTOM CURSOR -->
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
+<div id="cursor-outer">
+  <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="20" cy="20" r="18" stroke="url(#cg1)" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+    <circle cx="20" cy="20" r="12" stroke="url(#cg2)" stroke-width="0.5" opacity="0.4"/>
+    <defs>
+      <linearGradient id="cg1" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#a78bfa"/>
+        <stop offset="0.5" stop-color="#f472b6"/>
+        <stop offset="1" stop-color="#a78bfa"/>
+      </linearGradient>
+      <linearGradient id="cg2" x1="40" y1="0" x2="0" y2="40" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#c4b5fd"/>
+        <stop offset="1" stop-color="#f472b6"/>
+      </linearGradient>
+    </defs>
+  </svg>
+</div>
+<div id="cursor-dot"></div>
+<div id="cursor-trail"></div>
+
+<!-- PAGE TRANSITION -->
+<div id="pageTransition">
+  <div class="pt-panel"></div>
+  <div class="pt-logo">WITCH</div>
+</div>
+
+<!-- SCROLL PROGRESS -->
+<div id="scrollProgress"></div>
+
+<!-- TOAST CONTAINER -->
+<div id="toastContainer"></div>
 
 <audio id="bgAudio" loop preload="auto">
   <source src="https://files.catbox.moe/nz68r0.mp3" type="audio/mpeg">
 </audio>
+
+<!-- LIVE SALES BANNER -->
+<div id="liveSalesBanner">
+  <div class="container">
+    <div class="banner-track">
+      <div class="banner-pill"><div class="live-dot"></div><span id="bannerText">🔥 Ahmet K. az önce Lifetime lisans satın aldı</span></div>
+      <div class="banner-pill" style="color:rgba(255,255,255,.55);font-size:11px">Son 24 saatte <strong style="color:#fff" id="bannerCount">12</strong> satış</div>
+    </div>
+  </div>
+  <button class="banner-close" onclick="closeBanner()"><i class="fas fa-times"></i></button>
+</div>
 
 <!-- LOGIN SCREEN -->
 <div id="loginScreen">
@@ -329,20 +531,25 @@ footer{border-top:1px solid var(--border);padding:50px 0 32px;position:relative;
       <div class="login-version">WITCH &nbsp;&middot;&nbsp; 2026</div>
     </div>
     <div class="login-right">
-      <div class="tab-row">
+      <div class="tab-row" id="mainTabs">
         <button class="tab-btn active" id="tabLoginBtn" onclick="switchTab('login')">GİRİŞ YAP</button>
         <button class="tab-btn" id="tabRegBtn" onclick="switchTab('register')">KAYIT OL</button>
       </div>
+
+      <!-- LOGIN PANE -->
       <div class="tab-pane active" id="paneLogin">
         <div class="login-error" id="loginError"><i class="fas fa-exclamation-circle"></i><span id="loginErrorText">Hatalı bilgiler.</span></div>
         <div class="login-success" id="loginSuccess"><i class="fas fa-check-circle"></i><span id="loginSuccessText">Giriş başarılı!</span></div>
         <div class="login-field"><label>E-posta</label><div class="login-field-inner"><input type="email" id="loginEmail" placeholder="ornek@gmail.com"></div></div>
         <div class="login-field"><label>Şifre</label><div class="login-field-inner"><input type="password" id="loginPassword" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" onkeypress="if(event.key==='Enter')doLogin()"><span class="eye-toggle" onclick="toggleEye('loginPassword',this)"><i class="fas fa-eye"></i></span></div></div>
+        <span class="forgot-link" onclick="switchTab('forgot')">Şifremi Unuttum?</span>
         <div class="captcha-row" onclick="toggleCaptcha('capLogin',this)"><div class="cap-box" id="capLogin"></div><span class="cap-label">Ben robot değilim</span><div class="cap-logo">reCAPTCHA<br>Gizlilik &middot; Şartlar</div></div>
         <button class="login-btn" onclick="doLogin()"><div class="login-btn-shine"></div>GİRİŞ YAP</button>
         <div class="switch-txt">Hesabın yok mu? <span onclick="switchTab('register')">Kayıt ol</span></div>
         <div class="login-discord">Sorun mu var? <a href="https://discord.gg/d7U6Tj6HqY" target="_blank"><i class="fab fa-discord"></i> discord.gg/d7U6Tj6HqY</a></div>
       </div>
+
+      <!-- REGISTER PANE -->
       <div class="tab-pane" id="paneRegister">
         <div class="login-error" id="regError"><i class="fas fa-exclamation-circle"></i><span id="regErrorText">Hata oluştu.</span></div>
         <div class="login-success" id="regSuccess"><i class="fas fa-check-circle"></i><span id="regSuccessText">Kayıt başarılı!</span></div>
@@ -353,6 +560,18 @@ footer{border-top:1px solid var(--border);padding:50px 0 32px;position:relative;
         <button class="login-btn" onclick="doRegister()"><div class="login-btn-shine"></div>KAYIT OL</button>
         <div class="switch-txt">Zaten hesabın var mı? <span onclick="switchTab('login')">Giriş yap</span></div>
         <div class="login-discord">Destek: <a href="https://discord.gg/d7U6Tj6HqY" target="_blank"><i class="fab fa-discord"></i> discord.gg/d7U6Tj6HqY</a></div>
+      </div>
+
+      <!-- FORGOT PASSWORD PANE -->
+      <div id="paneForgot">
+        <div class="login-error" id="forgotError"><i class="fas fa-exclamation-circle"></i><span id="forgotErrorText">Hata oluştu.</span></div>
+        <div class="login-success" id="forgotSuccess"><i class="fas fa-check-circle"></i><span id="forgotSuccessText">E-posta gönderildi!</span></div>
+        <span class="back-link" onclick="switchTab('login')"><i class="fas fa-arrow-left"></i> Geri dön</span>
+        <div class="forgot-title">Şifremi Unuttum</div>
+        <div class="forgot-sub">E-posta adresinizi girin, sıfırlama bağlantısını Discord / e-posta üzerinden iletelim.</div>
+        <div class="login-field"><label>E-posta</label><div class="login-field-inner"><input type="email" id="forgotEmail" placeholder="ornek@gmail.com" onkeypress="if(event.key==='Enter')doForgot()"></div></div>
+        <button class="login-btn" onclick="doForgot()"><div class="login-btn-shine"></div>SIFIRLA</button>
+        <div class="login-discord">Direkt destek: <a href="https://discord.gg/d7U6Tj6HqY" target="_blank"><i class="fab fa-discord"></i> discord.gg/d7U6Tj6HqY</a></div>
       </div>
     </div>
   </div>
@@ -374,6 +593,7 @@ footer{border-top:1px solid var(--border);padding:50px 0 32px;position:relative;
     <div class="nav-links">
       <a href="#features" class="nav-a">Özellikler</a>
       <a href="#pricing" class="nav-a">Fiyatlar</a>
+      <a href="#testimonials" class="nav-a">Yorumlar</a>
       <a href="#faq" class="nav-a">SSS</a>
       <a href="https://discord.gg/d7U6Tj6HqY" target="_blank" class="nav-a"><i class="fab fa-discord"></i> Discord</a>
       <a href="#pricing" class="nav-cta">Satın Al</a>
@@ -390,8 +610,8 @@ footer{border-top:1px solid var(--border);padding:50px 0 32px;position:relative;
       <a href="https://discord.gg/d7U6Tj6HqY" target="_blank" class="btn-outline"><i class="fab fa-discord"></i>&nbsp; Discord</a>
     </div>
     <div class="hero-stats">
-      <div class="h-stat"><div class="h-stat-n">500+</div><div class="h-stat-l">AKTİF LİSANS</div></div>
-      <div class="h-stat"><div class="h-stat-n">99.9%</div><div class="h-stat-l">UPTIME</div></div>
+      <div class="h-stat"><div class="h-stat-n" data-target="500">0</div><div class="h-stat-l">AKTİF LİSANS</div></div>
+      <div class="h-stat"><div class="h-stat-n" data-target="99" data-suffix=".9%">0</div><div class="h-stat-l">UPTIME</div></div>
       <div class="h-stat"><div class="h-stat-n">7/24</div><div class="h-stat-l">DESTEK</div></div>
     </div>
   </section>
@@ -406,6 +626,23 @@ footer{border-top:1px solid var(--border);padding:50px 0 32px;position:relative;
         <div class="feat-card reveal"><div class="feat-icon"><i class="fas fa-clock"></i></div><div class="feat-title">Esnek Süreler</div><div class="feat-desc">Aylık, 3 aylık veya ömür boyu seçenekleriyle size en uygun planı seçin.</div></div>
         <div class="feat-card reveal"><div class="feat-icon"><i class="fas fa-headset"></i></div><div class="feat-title">7/24 Destek</div><div class="feat-desc">Discord sunucumuzda her zaman yardıma hazırız. Sorunlar dakikalar içinde çözülür.</div></div>
         <div class="feat-card reveal"><div class="feat-icon"><i class="fas fa-sync-alt"></i></div><div class="feat-title">Otomatik Güncelleme</div><div class="feat-desc">Lisansınız geçerli olduğu sürece tüm güncellemeler ücretsiz ve otomatik gelir.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BADGES -->
+  <section id="trust" class="z1">
+    <div class="container">
+      <div class="trust-inner">
+        <div class="trust-title">Güvenli &bull; Şifreli &bull; Hızlı</div>
+        <div class="badges-grid">
+          <div class="trust-badge reveal"><div class="badge-icon"><i class="fas fa-shield-alt"></i></div><div class="badge-text"><div class="badge-main">SSL Şifreleme</div><div class="badge-sub">256-bit güvenlik</div></div></div>
+          <div class="trust-badge reveal"><div class="badge-icon"><i class="fas fa-server"></i></div><div class="badge-text"><div class="badge-main">Railway Cloud</div><div class="badge-sub">%99.9 uptime</div></div></div>
+          <div class="trust-badge reveal"><div class="badge-icon"><i class="fas fa-bolt"></i></div><div class="badge-text"><div class="badge-main">Anında Teslimat</div><div class="badge-sub">5 dakika içinde</div></div></div>
+          <div class="trust-badge reveal"><div class="badge-icon"><i class="fas fa-lock"></i></div><div class="badge-text"><div class="badge-main">HWID Koruması</div><div class="badge-sub">Kopyalanamaz</div></div></div>
+          <div class="trust-badge reveal"><div class="badge-icon"><i class="fab fa-discord"></i></div><div class="badge-text"><div class="badge-main">Discord Destek</div><div class="badge-sub">7/24 aktif</div></div></div>
+          <div class="trust-badge reveal"><div class="badge-icon"><i class="fas fa-undo"></i></div><div class="badge-text"><div class="badge-main">Cihaz Transferi</div><div class="badge-sub">Ücretsiz taşıma</div></div></div>
+        </div>
       </div>
     </div>
   </section>
@@ -464,6 +701,69 @@ footer{border-top:1px solid var(--border);padding:50px 0 32px;position:relative;
     </div>
   </section>
 
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="sec z1">
+    <div class="container">
+      <div class="sec-head reveal"><div class="sec-tag">&#10022; Müşteri Yorumları</div><h2 class="sec-title">Kullanıcılar Ne Diyor?</h2><p class="sec-sub">500+ aktif kullanıcının güvendiği sistem. Gerçek deneyimler, gerçek insanlar.</p></div>
+      <div class="reviews-grid">
+        <div class="review-card reveal">
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <div class="review-quote">"</div>
+          <p class="review-text">Lifetime aldım, hiç pişman olmadım. 3 farklı bilgisayarda sorunsuz çalışıyor. Destek ekibi de süper hızlı yardımcı oluyor.</p>
+          <div class="review-author">
+            <div class="review-avatar" style="background:linear-gradient(135deg,#7c3aed,#f472b6)">AK</div>
+            <div><div class="review-name">Ahmet K.</div><div class="review-plan">LIFETIME</div><div class="review-date">Mart 2026</div></div>
+          </div>
+        </div>
+        <div class="review-card reveal" style="animation-delay:.1s">
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <div class="review-quote">"</div>
+          <p class="review-text">Premium planı denedim, 5 dakika içinde lisansım aktifleşti. HWID koruması sayesinde güvende hissediyorum. Kesinlikle tavsiye ederim.</p>
+          <div class="review-author">
+            <div class="review-avatar" style="background:linear-gradient(135deg,#0f6e56,#1d9e75)">MY</div>
+            <div><div class="review-name">Mert Y.</div><div class="review-plan">PREMIUM</div><div class="review-date">Şubat 2026</div></div>
+          </div>
+        </div>
+        <div class="review-card reveal" style="animation-delay:.2s">
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+          <div class="review-quote">"</div>
+          <p class="review-text">Basic planla başladım, sonra Lifetime'a geçtim. Fiyat/performans mükemmel. Railway altyapısı sayesinde hiç kesinti yaşamadım.</p>
+          <div class="review-author">
+            <div class="review-avatar" style="background:linear-gradient(135deg,#ba7517,#ef9f27)">SE</div>
+            <div><div class="review-name">Selin E.</div><div class="review-plan">LİFETIME</div><div class="review-date">Ocak 2026</div></div>
+          </div>
+        </div>
+        <div class="review-card reveal" style="animation-delay:.05s">
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <div class="review-quote">"</div>
+          <p class="review-text">Discord desteği inanılmaz. Gece 2'de sorun yaşadım, 10 dakika içinde çözüldü. Bu tür bir destek başka hiçbir yerde yok.</p>
+          <div class="review-author">
+            <div class="review-avatar" style="background:linear-gradient(135deg,#993556,#d4537e)">KD</div>
+            <div><div class="review-name">Kerem D.</div><div class="review-plan">PREMIUM</div><div class="review-date">Mart 2026</div></div>
+          </div>
+        </div>
+        <div class="review-card reveal" style="animation-delay:.15s">
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <div class="review-quote">"</div>
+          <p class="review-text">Güvenli altyapı ve hızlı teslimat. Lisansımı aldım, anında çalıştı. Sistem çok stabil, hiç sorun yaşamadım. Teşekkürler WITCH!</p>
+          <div class="review-author">
+            <div class="review-avatar" style="background:linear-gradient(135deg,#185fa5,#378add)">ZA</div>
+            <div><div class="review-name">Zeynep A.</div><div class="review-plan">BASIC</div><div class="review-date">Şubat 2026</div></div>
+          </div>
+        </div>
+        <div class="review-card reveal" style="animation-delay:.25s">
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <div class="review-quote">"</div>
+          <p class="review-text">Rakiplerle kıyasladım, WITCH en iyi seçenek. HWID koruması, Railway altyapısı ve gerçek 7/24 destek. Piyasada benzeri yok.</p>
+          <div class="review-author">
+            <div class="review-avatar" style="background:linear-gradient(135deg,#3b6d11,#639922)">CK</div>
+            <div><div class="review-name">Can K.</div><div class="review-plan">LİFETIME</div><div class="review-date">Ocak 2026</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="faq" class="sec z1">
     <div class="container">
       <div class="sec-head reveal"><div class="sec-tag">&#10022; SSS</div><h2 class="sec-title">Aklındaki Sorular</h2></div>
@@ -474,6 +774,7 @@ footer{border-top:1px solid var(--border);padding:50px 0 32px;position:relative;
         <div class="faq-item reveal" onclick="toggleFaq(this)"><div class="faq-q">Bilgisayarımı değiştirirsem ne olur? <i class="fas fa-plus"></i></div><div class="faq-a">Discord'dan ulaşın, lisansınızı yeni cihaza aktarırız.</div></div>
         <div class="faq-item reveal" onclick="toggleFaq(this)"><div class="faq-q">İnternet bağlantısı şart mı? <i class="fas fa-plus"></i></div><div class="faq-a">Evet, lisans doğrulaması için internet gereklidir.</div></div>
         <div class="faq-item reveal" onclick="toggleFaq(this)"><div class="faq-q">Lisansımı yenileyebilir miyim? <i class="fas fa-plus"></i></div><div class="faq-a">Basic ve Premium yenilenebilir. Lifetime bir daha ödeme gerektirmez.</div></div>
+        <div class="faq-item reveal" onclick="toggleFaq(this)"><div class="faq-q">Şifremi unuttum, ne yapmalıyım? <i class="fas fa-plus"></i></div><div class="faq-a">Giriş ekranındaki "Şifremi Unuttum" linkine tıklayın veya <a href="https://discord.gg/d7U6Tj6HqY" target="_blank">Discord</a>'dan ulaşın.</div></div>
       </div>
     </div>
   </section>
@@ -485,6 +786,7 @@ footer{border-top:1px solid var(--border);padding:50px 0 32px;position:relative;
         <div class="foot-links">
           <a href="#features" class="foot-a">Özellikler</a>
           <a href="#pricing" class="foot-a">Fiyatlar</a>
+          <a href="#testimonials" class="foot-a">Yorumlar</a>
           <a href="#faq" class="foot-a">SSS</a>
           <a href="/terms-of-service.html" class="foot-a">Kullanım Şartları</a>
           <a href="/privacy-policy.html" class="foot-a">Gizlilik</a>
@@ -507,26 +809,139 @@ footer{border-top:1px solid var(--border);padding:50px 0 32px;position:relative;
 </div>
 
 <script>
-// CUSTOM CURSOR
-const cur = document.getElementById('cursor');
-const ring = document.getElementById('cursor-ring');
-let cx=0,cy=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{
-  cx=e.clientX;cy=e.clientY;
-  cur.style.left=cx+'px';cur.style.top=cy+'px';
-});
-function animRing(){
-  rx+=(cx-rx)*.12;ry+=(cy-ry)*.12;
-  ring.style.left=rx+'px';ring.style.top=ry+'px';
-  requestAnimationFrame(animRing);
-}
-animRing();
-document.querySelectorAll('a,button,.nav-a,.ai-sg,.faq-q,.tab-btn,.switch-txt span,.captcha-row,.price-card').forEach(el=>{
-  el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
-  el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
+/* ======== CURSOR ======== */
+const curOuter = document.getElementById('cursor-outer');
+const curDot   = document.getElementById('cursor-dot');
+const curTrail = document.getElementById('cursor-trail');
+let cx=0, cy=0, tx=0, ty=0, ox=0, oy=0;
+let frameId;
+
+document.addEventListener('mousemove', e => {
+  cx = e.clientX; cy = e.clientY;
+  curDot.style.left = cx+'px'; curDot.style.top = cy+'px';
 });
 
-// LOGIN PARTICLES
+function animateCursor() {
+  // trail lags behind dot
+  tx += (cx - tx) * 0.10;
+  ty += (cy - ty) * 0.10;
+  curTrail.style.left = tx+'px';
+  curTrail.style.top  = ty+'px';
+  // outer ring lags more
+  ox += (cx - ox) * 0.07;
+  oy += (cy - oy) * 0.07;
+  curOuter.style.left = ox+'px';
+  curOuter.style.top  = oy+'px';
+  frameId = requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+// click burst
+document.addEventListener('mousedown', e => {
+  document.body.classList.add('cursor-click');
+  spawnCursorParticles(e.clientX, e.clientY);
+});
+document.addEventListener('mouseup', () => document.body.classList.remove('cursor-click'));
+
+// hover
+const hoverEls = 'a,button,.nav-a,.ai-sg,.faq-q,.tab-btn,.switch-txt span,.captcha-row,.price-card,.login-feature,.eye-toggle,.vol-range,.trust-badge,.review-card,.feat-card,.back-link,.forgot-link,.banner-close,.foot-a,.disc-btn,.music-toggle-btn,.p-btn,.btn-fill,.btn-outline,.nav-cta';
+document.querySelectorAll(hoverEls).forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+});
+
+// also run on dynamically added elements via event delegation
+document.addEventListener('mouseenter', e => {
+  if(e.target.matches && e.target.matches(hoverEls)) document.body.classList.add('cursor-hover');
+}, true);
+document.addEventListener('mouseleave', e => {
+  if(e.target.matches && e.target.matches(hoverEls)) document.body.classList.remove('cursor-hover');
+}, true);
+
+function spawnCursorParticles(x, y) {
+  const colors = ['#a78bfa','#f472b6','#c4b5fd','#7c3aed'];
+  for(let i=0;i<6;i++){
+    const p = document.createElement('div');
+    p.className = 'cpar';
+    const size = 3+Math.random()*4;
+    const angle = (Math.PI*2/6)*i + Math.random()*.5;
+    const dist = 20+Math.random()*30;
+    p.style.cssText = `left:${x}px;top:${y}px;width:${size}px;height:${size}px;background:${colors[Math.floor(Math.random()*colors.length)]};--dx:${Math.cos(angle)*dist}px;--dy:${Math.sin(angle)*dist}px`;
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(), 600);
+  }
+}
+
+/* ======== CURSOR — also force none on inputs ======== */
+const cssForce = document.createElement('style');
+cssForce.textContent = 'input,textarea,select{cursor:none!important}';
+document.head.appendChild(cssForce);
+
+/* ======== PAGE TRANSITION ======== */
+const pt = document.getElementById('pageTransition');
+function runPageTransition(cb) {
+  pt.classList.add('entering');
+  setTimeout(()=>{
+    cb();
+    pt.classList.remove('entering');
+    pt.classList.add('leaving');
+    setTimeout(()=>{ pt.classList.remove('leaving'); }, 700);
+  }, 550);
+}
+
+/* ======== SCROLL PROGRESS ======== */
+const prog = document.getElementById('scrollProgress');
+window.addEventListener('scroll', () => {
+  const h = document.body.scrollHeight - window.innerHeight;
+  prog.style.width = (window.scrollY/h*100)+'%';
+}, {passive:true});
+
+/* ======== TOAST ======== */
+function showToast(title, msg, type='info', duration=4000) {
+  const icons = {success:'fa-check-circle',error:'fa-exclamation-circle',info:'fa-info-circle'};
+  const tc = document.getElementById('toastContainer');
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.style.position='relative';
+  t.innerHTML = `<div class="toast-icon"><i class="fas ${icons[type]||icons.info}"></i></div><div class="toast-body"><div class="toast-title">${title}</div><div class="toast-msg">${msg}</div></div><button class="toast-close" onclick="dismissToast(this.closest('.toast'))"><i class="fas fa-times"></i></button><div class="toast-progress" style="animation-duration:${duration}ms"></div>`;
+  tc.appendChild(t);
+  setTimeout(()=>dismissToast(t), duration);
+}
+function dismissToast(t){
+  if(!t||t.classList.contains('out'))return;
+  t.classList.add('out');
+  setTimeout(()=>t.remove(), 350);
+}
+
+/* ======== LIVE SALES BANNER ======== */
+const salesNames = ['Ahmet K.','Mert Y.','Selin E.','Kerem D.','Zeynep A.','Can K.','Burak S.','Deniz M.','Arda T.','Elif P.'];
+const salesPlans = ['Lifetime lisans','Premium Plan','Basic Plan','Lifetime lisans'];
+const emojis = ['🔥','⚡','✨','💜','🚀'];
+let bannerCount = 12;
+function updateBanner() {
+  const name = salesNames[Math.floor(Math.random()*salesNames.length)];
+  const plan = salesPlans[Math.floor(Math.random()*salesPlans.length)];
+  const em   = emojis[Math.floor(Math.random()*emojis.length)];
+  bannerCount++;
+  document.getElementById('bannerText').textContent = `${em} ${name} az önce ${plan} satın aldı`;
+  document.getElementById('bannerCount').textContent = bannerCount;
+}
+function closeBanner() {
+  const b = document.getElementById('liveSalesBanner');
+  b.style.transition='transform .4s ease';
+  b.style.transform='translateY(-100%)';
+  const nav = document.getElementById('navbar');
+  nav.classList.remove('with-banner');
+  clearInterval(window._bannerInterval);
+}
+setTimeout(()=>{
+  const b = document.getElementById('liveSalesBanner');
+  b.classList.add('show');
+  document.getElementById('navbar').classList.add('with-banner');
+  window._bannerInterval = setInterval(()=>{ updateBanner(); }, 7000);
+}, 2500);
+
+/* ======== LOGIN PARTICLES ======== */
 (function(){
   const c=document.getElementById('loginParticles');
   const cols=['#a78bfa','#f472b6','#2dd4bf','#c4b5fd'];
@@ -538,7 +953,7 @@ document.querySelectorAll('a,button,.nav-a,.ai-sg,.faq-q,.tab-btn,.switch-txt sp
   }
 })();
 
-// SITE PARTICLES
+/* ======== SITE PARTICLES ======== */
 function spawnSiteParticles(){
   const c=document.getElementById('siteParticles');
   if(!c)return;
@@ -551,22 +966,30 @@ function spawnSiteParticles(){
   }
 }
 
-// CAPTCHA
+/* ======== CAPTCHA ======== */
 const capState={};
 function toggleCaptcha(id,row){capState[id]=!capState[id];const el=document.getElementById(id);el.classList.toggle('checked',capState[id]);el.textContent=capState[id]?'\u2713':'';}
 
-// EYE
+/* ======== EYE ======== */
 function toggleEye(id,btn){const i=document.getElementById(id);const ic=btn.querySelector('i');if(i.type==='password'){i.type='text';ic.className='fas fa-eye-slash';}else{i.type='password';ic.className='fas fa-eye';}}
 
-// TAB
+/* ======== TAB ======== */
 function switchTab(t){
-  document.getElementById('tabLoginBtn').classList.toggle('active',t==='login');
-  document.getElementById('tabRegBtn').classList.toggle('active',t==='register');
-  document.getElementById('paneLogin').classList.toggle('active',t==='login');
-  document.getElementById('paneRegister').classList.toggle('active',t==='register');
+  const tabs = ['login','register','forgot'];
+  tabs.forEach(name=>{
+    const pane = name==='forgot' ? document.getElementById('paneForgot') : document.getElementById('pane'+name.charAt(0).toUpperCase()+name.slice(1));
+    if(pane) { pane.style.display = name===t ? 'block' : 'none'; pane.className = name===t ? (name==='forgot'?'':'tab-pane active') : (name==='forgot'?'':'tab-pane'); }
+  });
+  const mainTabs = document.getElementById('mainTabs');
+  if(t==='forgot') { mainTabs.style.display='none'; document.getElementById('paneForgot').style.display='block'; }
+  else { mainTabs.style.display='flex'; }
+  if(t==='login') document.getElementById('tabLoginBtn').classList.add('active'); else document.getElementById('tabLoginBtn').classList.remove('active');
+  if(t==='register') document.getElementById('tabRegBtn').classList.add('active'); else document.getElementById('tabRegBtn').classList.remove('active');
 }
+// Init state
+(function(){ document.getElementById('paneLogin').style.display='block'; document.getElementById('paneRegister').style.display='none'; document.getElementById('paneForgot').style.display='none'; })();
 
-// AUTH
+/* ======== AUTH ======== */
 async function doLogin(){
   const email=document.getElementById('loginEmail').value.trim();
   const password=document.getElementById('loginPassword').value;
@@ -577,10 +1000,11 @@ async function doLogin(){
   try{
     const res=await fetch('/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});
     const data=await res.json();
-    if(data.success){document.getElementById('loginSuccessText').textContent='Giriş başarılı! Yükleniyor...';suc.classList.add('show');sessionStorage.setItem('witch_user',JSON.stringify(data.user));setTimeout(enterSite,1100);}
+    if(data.success){document.getElementById('loginSuccessText').textContent='Giriş başarılı! Yükleniyor...';suc.classList.add('show');sessionStorage.setItem('witch_user',JSON.stringify(data.user));setTimeout(()=>runPageTransition(enterSite),800);}
     else{document.getElementById('loginErrorText').textContent=data.message||'Hatalı e-posta veya şifre.';err.classList.add('show');document.getElementById('loginBox').classList.add('login-shake');setTimeout(()=>document.getElementById('loginBox').classList.remove('login-shake'),500);}
   }catch(e){document.getElementById('loginErrorText').textContent='Sunucuya bağlanılamadı.';err.classList.add('show');}
 }
+
 async function doRegister(){
   const username=document.getElementById('regUsername').value.trim();
   const email=document.getElementById('regEmail').value.trim();
@@ -593,31 +1017,97 @@ async function doRegister(){
   try{
     const res=await fetch('/api/auth/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username,email,password})});
     const data=await res.json();
-    if(data.success){document.getElementById('regSuccessText').textContent='Kayıt başarılı! Giriş yapabilirsiniz.';suc.classList.add('show');setTimeout(()=>switchTab('login'),1500);}
+    if(data.success){document.getElementById('regSuccessText').textContent='Kayıt başarılı! Giriş yapabilirsiniz.';suc.classList.add('show');showToast('Kayıt Başarılı','Giriş yapabilirsiniz.','success');setTimeout(()=>switchTab('login'),1500);}
     else{document.getElementById('regErrorText').textContent=data.message||'Bir hata oluştu.';err.classList.add('show');}
   }catch(e){document.getElementById('regErrorText').textContent='Sunucuya bağlanılamadı.';err.classList.add('show');}
 }
 
+async function doForgot(){
+  const email=document.getElementById('forgotEmail').value.trim();
+  const err=document.getElementById('forgotError');const suc=document.getElementById('forgotSuccess');
+  err.classList.remove('show');suc.classList.remove('show');
+  if(!email){document.getElementById('forgotErrorText').textContent='E-posta adresinizi girin.';err.classList.add('show');return;}
+  try{
+    const res=await fetch('/api/auth/forgot-password',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})});
+    const data=await res.json();
+    if(data.success){document.getElementById('forgotSuccessText').textContent='Sıfırlama bağlantısı gönderildi!';suc.classList.add('show');}
+    else{
+      // fallback — show Discord message
+      document.getElementById('forgotSuccessText').textContent='Discord\'dan #destek kanalına yazın, şifrenizi sıfırlayalım.';
+      suc.classList.add('show');
+    }
+  }catch(e){
+    document.getElementById('forgotSuccessText').textContent='Discord\'dan #destek kanalına yazın, şifrenizi sıfırlayalım.';
+    suc.classList.add('show');
+  }
+}
+
 function enterSite(){
   const ls=document.getElementById('loginScreen');
-  ls.style.transition='opacity .6s ease';ls.style.opacity='0';
-  setTimeout(()=>{ls.style.display='none';document.getElementById('mainSite').style.display='block';initSite();},600);
+  ls.style.display='none';
+  document.getElementById('mainSite').style.display='block';
+  initSite();
 }
 
 window.addEventListener('DOMContentLoaded',()=>{
-  if(sessionStorage.getItem('witch_user')){document.getElementById('loginScreen').style.display='none';document.getElementById('mainSite').style.display='block';initSite();}
+  if(sessionStorage.getItem('witch_user')){
+    document.getElementById('loginScreen').style.display='none';
+    document.getElementById('mainSite').style.display='block';
+    initSite();
+  }
 });
 
-// SITE INIT
+/* ======== COUNTUP ======== */
+function countUp(el, target, suffix='', duration=2000){
+  let start=0, step=target/duration*16;
+  const timer=setInterval(()=>{
+    start+=step;
+    if(start>=target){start=target;clearInterval(timer);}
+    el.textContent=Math.floor(start)+(suffix||'');
+  },16);
+}
+
+/* ======== SITE INIT ======== */
 let musicOn=false;
 function initSite(){
   spawnSiteParticles();
   const audio=document.getElementById('bgAudio');
   audio.volume=.4;updateVolFill(40);
   audio.play().then(()=>{document.getElementById('musicBtn').classList.add('playing');document.getElementById('musicIcon').className='fas fa-pause';document.getElementById('eqBars').classList.add('playing');musicOn=true;}).catch(()=>{document.addEventListener('click',function once(){audio.play().then(()=>{document.getElementById('musicBtn').classList.add('playing');document.getElementById('musicIcon').className='fas fa-pause';document.getElementById('eqBars').classList.add('playing');musicOn=true;}).catch(()=>{});document.removeEventListener('click',once);});});
-  const obs=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*90);});},{threshold:.1});
+
+  // Intersection observer for reveal + countup
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){
+        setTimeout(()=>e.target.classList.add('visible'),i*90);
+        // countup on stat numbers
+        const statNum = e.target.querySelector ? e.target.querySelector('[data-target]') : null;
+        if(statNum && !statNum.dataset.counted){
+          statNum.dataset.counted='1';
+          countUp(statNum, parseInt(statNum.dataset.target), statNum.dataset.suffix||'');
+        }
+      }
+    });
+  },{threshold:.1});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  // countup for hero stats (they are always visible on load after short delay)
+  setTimeout(()=>{
+    document.querySelectorAll('[data-target]').forEach(el=>{
+      if(!el.dataset.counted){
+        el.dataset.counted='1';
+        countUp(el, parseInt(el.dataset.target), el.dataset.suffix||'');
+      }
+    });
+  }, 600);
+
   window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50));
+
+  // welcome toast
+  setTimeout(()=>showToast('Hoş Geldiniz!','WITCH License Store\'a giriş yaptınız.','success',4000),1200);
+  // live sales toast
+  setTimeout(()=>showToast('Canlı Satış','Mert Y. az önce Premium Plan satın aldı. 🔥','info',5000),6000);
+
   // PARALLAX
   window.addEventListener('scroll',()=>{
     const sy=window.scrollY;
@@ -629,8 +1119,9 @@ function initSite(){
     if(badge)badge.style.transform='translateY('+sy*.1+'px)';
     const desc=document.querySelector('.hero-desc');
     if(desc)desc.style.transform='translateY('+sy*.08+'px)';
-  });
-  // 3D TILT on price cards
+  },{passive:true});
+
+  // 3D TILT price cards
   document.querySelectorAll('.price-card').forEach(card=>{
     card.addEventListener('mousemove',e=>{
       const r=card.getBoundingClientRect();
@@ -649,7 +1140,8 @@ function initSite(){
     });
     card.addEventListener('mouseenter',()=>{card.style.transition='none';});
   });
-  // 3D TILT on feat cards
+
+  // 3D TILT feat cards
   document.querySelectorAll('.feat-card').forEach(card=>{
     card.addEventListener('mousemove',e=>{
       const r=card.getBoundingClientRect();
@@ -660,9 +1152,20 @@ function initSite(){
     card.addEventListener('mouseleave',()=>{card.style.transform='';card.style.transition='all .5s ease';setTimeout(()=>card.style.transition='',500);});
     card.addEventListener('mouseenter',()=>{card.style.transition='none';});
   });
+
+  // re-attach hover for dynamically visible elements
+  document.querySelectorAll(hoverEls).forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
+  });
+
+  // keyboard shortcuts
+  document.addEventListener('keydown', e=>{
+    if(e.key==='Escape'){ if(aiOpen)toggleAI(); }
+  });
 }
 
-// MUSIC
+/* ======== MUSIC ======== */
 function toggleMusic(){
   const audio=document.getElementById('bgAudio');
   if(musicOn){audio.pause();document.getElementById('musicBtn').classList.remove('playing');document.getElementById('musicIcon').className='fas fa-play';document.getElementById('eqBars').classList.remove('playing');musicOn=false;}
@@ -671,14 +1174,14 @@ function toggleMusic(){
 function setVolume(v){document.getElementById('bgAudio').volume=v/100;updateVolFill(v);const ic=document.getElementById('volIcon');ic.className=v==0?'fas fa-volume-mute vol-icon':v<50?'fas fa-volume-down vol-icon':'fas fa-volume-up vol-icon';}
 function updateVolFill(v){const s=document.getElementById('volRange');if(s)s.style.background='linear-gradient(to right,var(--primary) '+v+'%,rgba(167,139,250,.15) '+v+'%)';}
 
-// FAQ
+/* ======== FAQ ======== */
 function toggleFaq(el){const op=el.classList.contains('open');document.querySelectorAll('.faq-item').forEach(f=>f.classList.remove('open'));if(!op)el.classList.add('open');}
 
-// AI
+/* ======== AI ======== */
 let aiOpen=false;
 function toggleAI(){aiOpen=!aiOpen;document.getElementById('aiPanel').classList.toggle('open',aiOpen);document.getElementById('aiFabIcon').className=aiOpen?'fas fa-times':'fas fa-robot';}
 const aiKB={fiyat:'Fiyatlarımız:<br>&bull; <b>Basic</b> &mdash; 300&#8378;/ay (1 cihaz)<br>&bull; <b>Premium</b> &mdash; 900&#8378;/3 ay (3 cihaz)<br>&bull; <b>Lifetime</b> &mdash; 2000&#8378; tek seferlik<br><br><a href="https://discord.gg/d7U6Tj6HqY" target="_blank">Discord &rarr;</a>',satin:'Satın almak için <a href="https://discord.gg/d7U6Tj6HqY" target="_blank">Discord sunucumuza</a> katıl! 5 dk içinde aktifleştirilir. &#128640;',destek:'Destek için <a href="https://discord.gg/d7U6Tj6HqY" target="_blank">Discord</a> sunucumuza katıl. 7/24 aktifiz!',lifetime:'<b>Lifetime &mdash; 2000&#8378;</b><br>&bull; Sınırsız cihaz<br>&bull; Ömür boyu geçerli<br>&bull; Tüm güncellemeler dahil',basic:'<b>Basic &mdash; 300&#8378;/ay</b><br>&bull; 1 cihaz &bull; 30 günlük &bull; Donanım koruması',premium:'<b>Premium &mdash; 900&#8378;/3ay</b><br>&bull; 3 cihaz &bull; 90 günlük &bull; Öncelikli destek',odeme:'Ödeme: <b>Papara, IBAN, kripto</b>. Detay için <a href="https://discord.gg/d7U6Tj6HqY" target="_blank">Discord</a>.',discord:'<a href="https://discord.gg/d7U6Tj6HqY" target="_blank">discord.gg/d7U6Tj6HqY</a>'};
-function getAIAnswer(q){const l=q.toLowerCase();if(l.includes('fiyat')||l.includes('kadar')||l.includes('ka\u00e7'))return aiKB.fiyat;if(l.includes('sat\u0131n')||l.includes('satin')||l.includes('nas\u0131l al'))return aiKB.satin;if(l.includes('destek')||l.includes('yard\u0131m')||l.includes('sorun'))return aiKB.destek;if(l.includes('lifetime')||l.includes('\u00f6m\u00fcr')||l.includes('s\u0131n\u0131rs\u0131z'))return aiKB.lifetime;if(l.includes('basic'))return aiKB.basic;if(l.includes('premium'))return aiKB.premium;if(l.includes('\u00f6deme')||l.includes('papara'))return aiKB.odeme;if(l.includes('discord')||l.includes('ileti\u015fim'))return aiKB.discord;if(l.includes('merhaba')||l.includes('selam'))return 'Merhaba! &#128075; Fiyatlar, satın alma veya destek konusunda yardımcı olabilirim!';return 'Anlayamadım. <a href="https://discord.gg/d7U6Tj6HqY" target="_blank">Discord</a>\'dan yazabilirsin!';}
+function getAIAnswer(q){const l=q.toLowerCase();if(l.includes('fiyat')||l.includes('kadar')||l.includes('kaç'))return aiKB.fiyat;if(l.includes('satın')||l.includes('satin')||l.includes('nasıl al'))return aiKB.satin;if(l.includes('destek')||l.includes('yardım')||l.includes('sorun'))return aiKB.destek;if(l.includes('lifetime')||l.includes('ömür')||l.includes('sınırsız'))return aiKB.lifetime;if(l.includes('basic'))return aiKB.basic;if(l.includes('premium'))return aiKB.premium;if(l.includes('ödeme')||l.includes('papara'))return aiKB.odeme;if(l.includes('discord')||l.includes('iletişim'))return aiKB.discord;if(l.includes('merhaba')||l.includes('selam'))return 'Merhaba! &#128075; Fiyatlar, satın alma veya destek konusunda yardımcı olabilirim!';return 'Anlayamadım. <a href="https://discord.gg/d7U6Tj6HqY" target="_blank">Discord</a>\'dan yazabilirsin!';}
 function askAI(msg){const input=document.getElementById('aiInput');const q=msg||input.value.trim();if(!q)return;input.value='';addMessage(q,'user');const t=addTyping();setTimeout(()=>{t.remove();addMessage(getAIAnswer(q),'bot');},650+Math.random()*500);}
 function addMessage(text,type){const c=document.getElementById('aiMessages');const d=document.createElement('div');d.className='ai-msg '+type;d.innerHTML='<div class="msg-av">'+(type==='bot'?'<i class="fas fa-robot"></i>':'<i class="fas fa-user"></i>')+'</div><div class="msg-bub">'+text+'</div>';c.appendChild(d);c.scrollTop=c.scrollHeight;return d;}
 function addTyping(){const c=document.getElementById('aiMessages');const d=document.createElement('div');d.className='ai-msg bot';d.innerHTML='<div class="msg-av"><i class="fas fa-robot"></i></div><div class="msg-bub"><div class="typing-dots"><span></span><span></span><span></span></div></div>';c.appendChild(d);c.scrollTop=c.scrollHeight;return d;}
