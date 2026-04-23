@@ -667,7 +667,7 @@ async function doForgot(){
 }
 
 function enterSite(){document.getElementById('loginScreen').style.display='none';document.getElementById('mainSite').style.display='block';initSite();}
-window.addEventListener('DOMContentLoaded',()=>{if(sessionStorage.getItem('witch_user')){document.getElementById('loginScreen').style.display='none';document.getElementById('mainSite').style.display='block';initSite();}});
+window.addEventListener('DOMContentLoaded',()=>{document.getElementById('loginScreen').style.display='none';document.getElementById('mainSite').style.display='block';initSite();});
 
 /* COUNTUP */
 function countUp(el,target,suffix,duration=2000){let s=0,step=target/duration*16;const t=setInterval(()=>{s+=step;if(s>=target){s=target;clearInterval(t);}el.textContent=Math.floor(s)+(suffix||'');},16);}
