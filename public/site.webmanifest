@@ -1,0 +1,19 @@
+{
+  "name": "RedLabel Tools",
+  "short_name": "RedLabel",
+  "icons": [
+    {
+      "src": "logo/redlabel_logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "logo/redlabel_logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#05070d",
+  "background_color": "#05070d",
+  "display": "standalone"
+}
