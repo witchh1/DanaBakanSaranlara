@@ -1,0 +1,189 @@
+/* RedLabel enhancement layer — index.html'in üstüne biner, mevcut CSS'e dokunmaz */
+:root{--rl-ease:cubic-bezier(.16,1,.3,1)}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+:focus-visible{outline:2px solid #38bdf8;outline-offset:3px;border-radius:8px}
+/* scroll progress + aurora + cursor light */
+.rl-progress{position:fixed;top:0;left:0;height:3px;width:100%;z-index:200;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#38bdf8,#60a5fa);box-shadow:0 0 14px rgba(99,102,241,.8)}
+.rl-aurora{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.rl-aurora i{position:absolute;border-radius:50%;opacity:.42;will-change:transform}
+.rl-aurora i:nth-child(1){width:46vw;height:46vw;left:-12vw;top:-14vw;background:radial-gradient(circle,#2563eb,transparent 68%);animation:rlD1 28s ease-in-out infinite alternate}
+.rl-aurora i:nth-child(2){width:38vw;height:38vw;right:-10vw;top:20vh;background:radial-gradient(circle,#6366f1,transparent 68%);animation:rlD2 32s ease-in-out infinite alternate}
+.rl-aurora i:nth-child(3){width:34vw;height:34vw;left:25vw;bottom:-16vw;background:radial-gradient(circle,#0ea5e9,transparent 68%);opacity:.28;animation:rlD1 36s ease-in-out infinite alternate-reverse}
+@keyframes rlD1{to{transform:translate(18vw,16vh) scale(1.25)}}
+@keyframes rlD2{to{transform:translate(-20vw,-12vh) scale(.85)}}
+.rl-cursor{position:fixed;left:0;top:0;width:180px;height:180px;margin:-90px 0 0 -90px;z-index:1;pointer-events:none;background:radial-gradient(circle,rgba(56,189,248,.05),transparent 65%);will-change:transform}
+/* nav */
+.navbar.rl-scrolled{height:60px;background:rgba(4,6,10,.92);box-shadow:0 12px 40px rgba(0,0,0,.55)}
+.nav-link.rl-active{color:#fff;text-shadow:0 0 18px rgba(56,189,248,.8)}
+/* hero giriş sahnesi */
+.rl-on .hero-content>*{animation:rlUp 1s var(--rl-ease) both;animation-delay:calc(var(--i,0)*120ms + 200ms)}
+.rl-on .hero-content>h1{animation:rlHero 1.4s var(--rl-ease) both;animation-delay:.3s}
+@keyframes rlUp{from{opacity:0;transform:translateY(28px);filter:blur(6px)}}
+@keyframes rlHero{from{opacity:0;transform:translateY(46px) scale(.95);filter:blur(16px);letter-spacing:.05em}}
+.gradient-title{background-image:linear-gradient(100deg,#fff 5%,#bae6fd 25%,#818cf8 45%,#38bdf8 62%,#bae6fd 80%,#fff 100%);background-size:260% 100%;-webkit-background-clip:text;background-clip:text;animation:rlFlow 9s linear infinite}
+@keyframes rlFlow{to{background-position:-260% 0}}
+.btn-primary-hero,.btn-nav-download{animation:rlGlow 3.2s ease-in-out infinite}
+@keyframes rlGlow{50%{box-shadow:0 16px 54px rgba(79,70,229,.8),inset 0 1px 0 rgba(255,255,255,.3)}}
+.btn-primary-hero,.btn-secondary-hero,.btn-nav-download{will-change:transform}
+/* scroll reveal: bittiğinde JS attribute'u siler, hover geçişleri bozulmaz */
+.rl-on [data-rl]{opacity:0;transform:translateY(36px) scale(.98);filter:blur(7px);transition:opacity .9s var(--rl-ease),transform .9s var(--rl-ease),filter .9s var(--rl-ease);transition-delay:var(--rl-d,0ms)}
+.rl-on [data-rl].rl-in{opacity:1;transform:none;filter:none}
+/* kart ışığı ve 3D eğim */
+.rl-spot:hover{background-image:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(56,189,248,.16),transparent 62%)}
+.rl-tilt{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-4px)!important;transition:transform .12s ease-out!important}
+/* vitrin */
+.frame-preview-img.active{animation:rlScreen 1s var(--rl-ease)}
+@keyframes rlScreen{from{transform:scale(1.07);filter:blur(8px)}}
+.rl-autobar{position:absolute;left:0;bottom:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#38bdf8,#818cf8);z-index:5;pointer-events:none}
+.faq-icon-box{transition:transform .45s var(--rl-ease),background .3s}
+.faq-item.active .faq-icon-box{transform:rotate(45deg)}
+@media(max-width:860px){.rl-cursor{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rl-aurora i,.gradient-title,.btn-primary-hero,.btn-nav-download,.frame-preview-img.active{animation:none!important}.rl-cursor{display:none}}
+
+/* ═══ v3: daha yumuşak hover, glow ve ek animasyonlar ═══ */
+@property --rl-a{syntax:"<angle>";initial-value:0deg;inherits:false}
+.bento-card,.pricing-card,.thumb-card,.stat-card,.faq-item,.showcase-detail-card{transition:transform .7s var(--rl-ease),border-color .5s,box-shadow .7s var(--rl-ease),background .5s}
+/* dönen ışıklı kenarlık (hover'da belirir) */
+.bento-card::after,.pricing-card::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;pointer-events:none;opacity:0;transition:opacity .6s var(--rl-ease);
+  background:conic-gradient(from var(--rl-a),transparent 0deg,#38bdf8 70deg,#818cf8 140deg,#22d3ee 200deg,transparent 280deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:rlSpin 5s linear infinite paused}
+.bento-card:hover::after,.pricing-card:hover::after,.pricing-card.featured::after{opacity:1;animation-play-state:running}
+@keyframes rlSpin{to{--rl-a:360deg}}
+.bento-card:hover{box-shadow:0 30px 70px rgba(0,0,0,.7),0 0 50px rgba(56,189,248,.16),0 0 90px rgba(99,102,241,.1)}
+/* ikonlar */
+.bento-icon{transition:transform .7s var(--rl-ease),box-shadow .6s;animation:rlFloat 6s ease-in-out infinite}
+.bento-card:nth-child(2n) .bento-icon{animation-delay:-2s}.bento-card:nth-child(3n) .bento-icon{animation-delay:-4s}
+.bento-card:hover .bento-icon{transform:scale(1.14) rotate(-7deg);box-shadow:0 0 34px rgba(56,189,248,.5);animation-play-state:paused}
+@keyframes rlFloat{50%{transform:translateY(-6px)}}
+.bento-tag{transition:transform .5s var(--rl-ease),box-shadow .5s,background .4s,color .4s}
+.bento-tag:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(56,189,248,.28);background:rgba(56,189,248,.14);color:#fff}
+.bento-card:hover .bento-title{text-shadow:0 0 26px rgba(56,189,248,.5)}
+.bento-title{transition:text-shadow .6s}
+/* butonlar: parlama süpürmesi + tıklama dalgası */
+.btn-primary-hero,.btn-secondary-hero,.btn-nav-download,.btn-detail-cta{position:relative;overflow:hidden;isolation:isolate}
+.btn-primary-hero::after,.btn-nav-download::after,.btn-detail-cta::after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;z-index:-1;background:linear-gradient(105deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-20deg);transition:left .9s var(--rl-ease)}
+.btn-primary-hero:hover::after,.btn-nav-download:hover::after,.btn-detail-cta:hover::after{left:130%}
+.rl-ripple{position:absolute;border-radius:50%;width:10px;height:10px;margin:-5px;background:rgba(255,255,255,.55);pointer-events:none;animation:rlRip .7s ease-out forwards}
+@keyframes rlRip{to{transform:scale(30);opacity:0}}
+/* rozet noktası, menü çizgisi */
+.badge-dot{position:relative}.badge-dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid currentColor;opacity:.6;animation:rlPing 2.2s ease-out infinite}
+@keyframes rlPing{to{transform:scale(2.6);opacity:0}}
+.nav-link{position:relative}.nav-link::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:linear-gradient(90deg,#38bdf8,#818cf8);transform:scaleX(0);transform-origin:right;transition:transform .5s var(--rl-ease)}
+.nav-link:hover::after,.nav-link.rl-active::after{transform:scaleX(1);transform-origin:left}
+.brand-logo-box{transition:transform .7s var(--rl-ease),box-shadow .5s}.nav-brand:hover .brand-logo-box{transform:rotate(-8deg) scale(1.1);box-shadow:0 0 28px rgba(56,189,248,.5)}
+/* istatistikler, küçük resimler, SSS */
+.stat-card:hover{transform:translateY(-6px)}
+.stat-num{transition:text-shadow .6s}.stat-card:hover .stat-num{text-shadow:0 0 32px rgba(56,189,248,.7)}
+.thumb-card:hover{box-shadow:0 14px 34px rgba(56,189,248,.18)}.thumb-card.active{box-shadow:0 0 0 1px rgba(56,189,248,.5),0 0 34px rgba(56,189,248,.25)}
+.faq-item:hover{border-color:rgba(56,189,248,.25);box-shadow:0 10px 34px rgba(56,189,248,.08)}
+.faq-content{max-height:none!important;display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--rl-ease),padding .6s var(--rl-ease)!important}
+.faq-item.active .faq-content{grid-template-rows:1fr}.faq-content>*{overflow:hidden;min-height:0}
+/* vitrin detay kartı: metin değişiminde yumuşak geçiş */
+.rl-swap{animation:rlSwap .7s var(--rl-ease) both}
+@keyframes rlSwap{from{opacity:0;transform:translateY(14px);filter:blur(5px)}}
+.frame-ambient-glow{transition:background 1.2s ease,opacity 1.2s}
+.frame-ambient-glow{animation:rlBreath 7s ease-in-out infinite}
+@keyframes rlBreath{50%{opacity:.7;transform:scale(1.06)}}
+/* hero parçacık tuvali */
+.hero-content{position:relative;z-index:2;will-change:transform,opacity}
+/* ayırıcı ışık hattı */
+.stats-strip{position:relative}.stats-strip::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,#38bdf8,#818cf8,transparent);background-size:200% 100%;animation:rlLine 6s linear infinite}
+@keyframes rlLine{to{background-position:-200% 0}}
+.footer{position:relative}
+@media(prefers-reduced-motion:reduce){.bento-card::after,.pricing-card::after,.bento-icon,.badge-dot::after,.stats-strip::before,.frame-ambient-glow,.rl-swap{animation:none!important}.faq-content{transition:none!important}}
+
+/* ═══ v4: SSS yenilemesi, taşma düzeltmesi, ek animasyonlar (yalnızca mavi tonlar) ═══ */
+.faq-list{gap:16px}
+.faq-item{position:relative;background:rgba(7,10,18,.92);border-radius:18px}
+.faq-item.active{background:rgba(9,18,32,.9);border-color:rgba(56,189,248,.5);box-shadow:0 0 0 1px rgba(56,189,248,.12),0 18px 50px rgba(14,165,233,.12)}
+.faq-item::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .4s;background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),rgba(56,189,248,.12),transparent 65%)}
+.faq-item:hover::before{opacity:1}
+.faq-trigger{position:relative;z-index:1;overflow:hidden;font-size:16.5px;letter-spacing:-.005em}
+.faq-icon-box{width:32px;height:32px;border-radius:10px;font-size:18px;line-height:1;background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);color:#e2e8f0}
+.faq-item.active .faq-icon-box{border-radius:11px;background:rgba(56,189,248,.16);border-color:rgba(56,189,248,.55);color:#38bdf8;box-shadow:0 0 22px rgba(56,189,248,.4)}
+.faq-item.active .faq-icon-box{animation:rlDiamond .7s var(--rl-ease)}
+@keyframes rlDiamond{from{transform:rotate(-45deg) scale(.7)}}
+.faq-content p{position:relative;z-index:1;font-size:15px;line-height:1.75;color:#94a3b8}
+.faq-content .rl-w{display:inline-block;opacity:0;transform:translateY(8px);filter:blur(4px);animation:rlWord .55s var(--rl-ease) forwards;animation-delay:calc(var(--wi,0)*16ms + 120ms)}
+@keyframes rlWord{to{opacity:1;transform:none;filter:none}}
+.faq-item.active::after{content:"";position:absolute;left:0;top:0;height:2px;width:100%;background:linear-gradient(90deg,transparent,#38bdf8,transparent);transform-origin:0 50%;animation:rlSweep 1s var(--rl-ease)}
+@keyframes rlSweep{from{transform:scaleX(0);opacity:0}}
+/* Profil & Rozetler taşma düzeltmesi */
+.showcase-tabs-nav{flex-wrap:wrap;justify-content:center;border-radius:28px;overflow:visible;row-gap:4px}
+.showcase-tab-btn{flex:0 0 auto;min-width:0}
+.thumb-name,.thumb-sub{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.thumb-info,.thumb-meta{gap:8px}
+#detailTitle,#detailDesc,#detailFeatureList,#detailPill{overflow-wrap:anywhere;min-width:0}
+@media(max-width:860px){.showcase-tabs-nav{justify-content:flex-start}.showcase-tab-btn{padding:8px 12px;font-size:12px}}
+
+/* ═══ v4.1: sekmeler tek satır, birleşik istatistik şeridi, daha fazla hareket ═══ */
+/* sekmeler: her zaman tek satır, kayan cam hap */
+.showcase-tabs-container{padding:0 8px}
+.showcase-tabs-nav{position:relative;flex-wrap:nowrap!important;justify-content:flex-start;gap:2px;padding:6px;border-radius:9999px!important;max-width:100%;overflow-x:auto;overflow-y:hidden}
+.showcase-tab-btn{position:relative;z-index:1;flex:0 0 auto;gap:7px;padding:10px 13px;font-size:13px;background:transparent!important;border-color:transparent!important;box-shadow:none!important}
+.showcase-tab-btn.active{color:#fff}
+.showcase-tab-btn .tab-icon{transition:transform .6s var(--rl-ease)}
+.showcase-tab-btn.active .tab-icon{transform:scale(1.15) rotate(-6deg);color:#38bdf8}
+.tab-badge{padding:2px 6px;font-size:10px;white-space:nowrap}
+.rl-tabpill{position:absolute;top:6px;bottom:6px;left:0;width:0;border-radius:9999px;z-index:0;pointer-events:none;background:linear-gradient(135deg,rgba(14,165,233,.34),rgba(99,102,241,.38));border:1px solid rgba(56,189,248,.55);box-shadow:0 4px 24px rgba(56,189,248,.35),inset 0 1px 0 rgba(255,255,255,.25);transition:transform .65s var(--rl-ease),width .65s var(--rl-ease)}
+.rl-tabpill::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.28) 50%,transparent 70%);background-size:250% 100%;animation:rlShine 3.4s linear infinite}
+@keyframes rlShine{from{background-position:150% 0}to{background-position:-150% 0}}
+@media(max-width:1240px){.showcase-tab-btn{padding:9px 10px;font-size:12.5px;gap:6px}.showcase-tab-btn .tab-icon svg{width:15px;height:15px}}
+@media(max-width:1100px){.showcase-tabs-nav{scrollbar-width:none}.showcase-tab-btn{font-size:12px}.tab-badge{display:none}.showcase-tab-btn.active .tab-badge{display:inline-block}}
+@media(max-width:860px){.showcase-tabs-nav{border-radius:9999px!important}.showcase-tab-btn{padding:8px 11px}}
+
+/* istatistik şeridi */
+.stats-strip{overflow:hidden;padding:56px 0 0}
+.stats-grid{grid-template-columns:repeat(5,1fr)!important;gap:0!important;align-items:start}
+.stat-card{position:relative;padding:8px 10px 26px;border-radius:16px}
+.stat-card+.stat-card::before{content:"";position:absolute;left:0;top:14%;height:62%;width:1px;background:linear-gradient(180deg,transparent,rgba(56,189,248,.35),transparent)}
+.stat-card::after{content:"";position:absolute;left:50%;bottom:10px;width:0;height:2px;border-radius:2px;background:linear-gradient(90deg,#38bdf8,#818cf8);transform:translateX(-50%);transition:width .7s var(--rl-ease),box-shadow .7s;box-shadow:0 0 0 rgba(56,189,248,0)}
+.stat-card:hover::after{width:56%;box-shadow:0 0 16px rgba(56,189,248,.8)}
+.stat-card.rl-spot:hover,.stat-card:hover{background-image:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),rgba(56,189,248,.12),transparent 70%)}
+.stat-num{font-size:clamp(28px,3.4vw,40px);white-space:nowrap;font-variant-numeric:tabular-nums;background-size:200% 100%;animation:rlNum 6s ease-in-out infinite alternate}
+@keyframes rlNum{to{background-position:100% 0}}
+.stat-label{font-size:12px;letter-spacing:.05em}
+@media(max-width:860px){.stats-grid{grid-template-columns:repeat(2,1fr)!important;row-gap:8px!important}.stat-card:last-child{grid-column:1/-1}.stat-card+.stat-card::before{display:none}}
+/* kayan yazı bandı */
+.rl-ticker{position:relative;overflow:hidden;border-top:1px solid rgba(56,189,248,.14);padding:15px 0;-webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.rl-ticker-track{display:flex;gap:44px;width:max-content;animation:rlTick 46s linear infinite}
+.rl-ticker:hover .rl-ticker-track{animation-play-state:paused}
+.rl-ticker span{position:relative;white-space:nowrap;font-size:13px;font-weight:700;color:#64748b;transition:color .3s}
+.rl-ticker span:hover{color:#bae6fd}
+.rl-ticker span::after{content:"";position:absolute;right:-26px;top:50%;width:6px;height:6px;margin-top:-3px;border-radius:2px;background:#38bdf8;opacity:.55;transform:rotate(45deg)}
+@keyframes rlTick{to{transform:translateX(-50%)}}
+
+/* başlıklar: kelime kelime belirir */
+.rl-hw{display:inline-block;opacity:0;transform:translateY(.55em) rotateX(-50deg);transform-origin:50% 100%;filter:blur(8px);transition:opacity .8s var(--rl-ease),transform .9s var(--rl-ease),filter .8s var(--rl-ease);transition-delay:calc(var(--wi,0)*70ms)}
+.rl-h-in .rl-hw{opacity:1;transform:none;filter:none}
+.rl-h-in .gradient-title{animation:rlFlow 9s linear infinite,rlUp 1s var(--rl-ease) .35s both}
+/* bölüm başlığı altında akan çizgi */
+.section-header{position:relative}
+.section-header h2::after{content:"";display:block;width:0;height:2px;margin:18px auto 0;border-radius:2px;background:linear-gradient(90deg,transparent,#38bdf8,#818cf8,transparent);transition:width 1.2s var(--rl-ease) .5s}
+.rl-hh h2::after{width:140px}
+/* tıklama kıvılcımları */
+.rl-spark{position:fixed;left:0;top:0;width:5px;height:5px;margin:-2.5px;border-radius:50%;background:#7dd3fc;box-shadow:0 0 10px #38bdf8;pointer-events:none;z-index:400;will-change:transform,opacity}
+/* özellik kartı ikonlarında halka */
+.bento-icon{position:relative}
+.bento-icon::after{content:"";position:absolute;inset:-5px;border-radius:inherit;border:1px solid rgba(56,189,248,.5);opacity:0;transform:scale(.85);transition:opacity .5s,transform .7s var(--rl-ease)}
+.bento-card:hover .bento-icon::after{opacity:1;transform:scale(1.18)}
+/* fiyat kartı: öne çıkan kartta nefes alan hale */
+.pricing-card.featured{animation:rlHalo 4.5s ease-in-out infinite}
+@keyframes rlHalo{50%{box-shadow:0 0 70px rgba(56,189,248,.22),0 30px 80px rgba(0,0,0,.6)}}
+/* vitrin çerçevesi: kaydırınca hafif yaklaşma */
+.showcase-detail-card{position:relative;overflow:hidden}
+.showcase-detail-card::before{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;pointer-events:none;background:linear-gradient(105deg,transparent,rgba(56,189,248,.07),transparent);animation:rlGlide 7s ease-in-out infinite}
+@keyframes rlGlide{0%,55%{left:-60%}100%{left:130%}}
+@media(prefers-reduced-motion:reduce){.rl-ticker-track,.rl-tabpill::after,.stat-num,.pricing-card.featured,.showcase-detail-card::before{animation:none!important}.rl-hw{opacity:1;transform:none;filter:none;transition:none}.rl-tabpill{transition:none}}
+
+/* v4.3: rozet sinyal efektleri, dekoratif çizgiler kapalı */
+.badge-dot{animation:none!important;box-shadow:none!important}
+.badge-dot::after{display:none!important}
+.stats-strip::before{display:none!important}
+.section-header h2::after{display:none!important}
+@media(prefers-reduced-motion:reduce){.faq-content .rl-w{animation:none;opacity:1;transform:none;filter:none}.faq-item.active::after,.faq-item.active .faq-icon-box{animation:none}}
+
+/* v4.4: istatistik şeridi üst boşluğu kısaltıldı, içerik dengelendi */
+.stats-strip{padding:26px 0 0!important}
+.stat-card{padding:4px 10px 18px!important}
+.rl-ticker{padding:13px 0!important}
