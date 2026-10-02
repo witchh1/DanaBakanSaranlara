@@ -80,7 +80,7 @@
     }
 
     html {
-      scroll-behavior: smooth;
+      scroll-behavior: auto;
       background: var(--bg-deep);
       color: var(--text-main);
       font-family: var(--font-sans);
@@ -167,9 +167,31 @@
     }
 
     .gradient-title {
-      background: linear-gradient(135deg, #ffffff 25%, #bae6fd 65%, #818cf8 100%);
+      background-image: linear-gradient(105deg,
+          #ffffff 0%,
+          #7dd3fc 18%,
+          #ffffff 36%,
+          #c084fc 54%,
+          #38bdf8 72%,
+          #ffffff 88%,
+          #7dd3fc 100%);
+      background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+      animation: rlTextShimmer 4.5s linear infinite;
+    }
+
+    @keyframes rlTextShimmer {
+      0% {
+        background-position: 0% center;
+      }
+
+      100% {
+        background-position: -200% center;
+      }
     }
 
     .section-header {
@@ -193,20 +215,20 @@
       line-height: 1.6;
     }
 
-    /* ─── AMBIENT BACKGROUND GLOWS ─── */
+    /* ─── AMBIENT BACKGROUND GLOWS (Sleek & Soft) ─── */
     .ambient-glow {
       position: absolute;
       border-radius: 50%;
-      filter: blur(140px);
+      filter: blur(160px);
       pointer-events: none;
       z-index: 0;
-      opacity: 0.4;
+      opacity: 0.16;
     }
 
     .glow-cyan {
       width: 500px;
       height: 500px;
-      background: radial-gradient(circle, rgba(56, 189, 248, 0.35) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.2) 0%, transparent 70%);
       top: -100px;
       left: 15%;
     }
@@ -214,7 +236,7 @@
     .glow-indigo {
       width: 600px;
       height: 600px;
-      background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.16) 0%, transparent 70%);
       top: 100px;
       right: 10%;
     }
@@ -664,11 +686,11 @@
       position: absolute;
       inset: -25px;
       border-radius: 40px;
-      background: radial-gradient(ellipse at 50% 30%, rgba(56, 189, 248, 0.3) 0%, rgba(99, 102, 241, 0.2) 45%, transparent 75%);
+      background: radial-gradient(ellipse at 50% 30%, rgba(56, 189, 248, 0.2) 0%, rgba(99, 102, 241, 0.12) 45%, transparent 75%);
       filter: blur(55px);
       pointer-events: none;
       z-index: 0;
-      opacity: 0.85;
+      opacity: 0.25;
       transition: all 0.6s ease;
     }
 
@@ -1798,7 +1820,7 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="enhance.css?v=47">
+  <link rel="stylesheet" href="enhance.css?v=61">
 </head>
 
 <body>
@@ -1870,7 +1892,8 @@
       </h1>
 
       <p class="hero-sub">
-        Steam kütüphane entegrasyonu, Türkçe yama kontrolü, dahili onarım araçları ve TurboBoost performans aracını tek çatı altında buluşturan yeni nesil masaüstü istemcisi.
+        Steam kütüphane entegrasyonu, Türkçe yama kontrolü, dahili onarım araçları ve TurboBoost performans aracını tek
+        çatı altında buluşturan yeni nesil masaüstü istemcisi.
       </p>
 
       <div class="hero-buttons">
@@ -2100,7 +2123,8 @@
           <div class="detail-pill" id="detailPill">Özel Fırsatlar & Mağaza</div>
           <h3 class="detail-title" id="detailTitle">172+ Popüler ve İndirimli Oyun Kataloğu</h3>
           <p class="detail-desc" id="detailDesc">
-            Steam'deki popüler ve indirimli oyunlara uygulamanın içinden göz at. Beğendiğin oyunu tek tıkla listene ekle.
+            Steam'deki popüler ve indirimli oyunlara uygulamanın içinden göz at. Beğendiğin oyunu tek tıkla listene
+            ekle.
           </p>
         </div>
 
@@ -2217,7 +2241,20 @@
         <div class="stat-label">Topluluk Desteği</div>
       </div>
     </div>
-    <div class="rl-ticker" aria-hidden="true"><div class="rl-ticker-track"><span>Türkçe Yama</span><span>Steam Fix</span><span>Turbo Mod</span><span>Oyun Mağazası</span><span>Kütüphane</span><span>Topluluk & Lobi</span><span>Animasyonlu Rozetler</span><span>VIP Lisans</span><span>Yama Kontrolü</span><span>Hızlı Arama</span><span>Türkçe Yama</span><span>Steam Fix</span><span>Turbo Mod</span><span>Oyun Mağazası</span><span>Kütüphane</span><span>Topluluk & Lobi</span><span>Animasyonlu Rozetler</span><span>VIP Lisans</span><span>Yama Kontrolü</span><span>Hızlı Arama</span></div></div>
+    <div class="rl-ticker" aria-hidden="true">
+      <div class="rl-ticker-track">
+        <div class="rl-ticker-group">
+          <span>Türkçe Yama</span><span>Steam Fix</span><span>Turbo Mod</span><span>Oyun
+            Mağazası</span><span>Kütüphane</span><span>Topluluk & Lobi</span><span>Animasyonlu Rozetler</span><span>VIP
+            Lisans</span><span>Yama Kontrolü</span><span>Hızlı Arama</span>
+        </div>
+        <div class="rl-ticker-group" aria-hidden="true">
+          <span>Türkçe Yama</span><span>Steam Fix</span><span>Turbo Mod</span><span>Oyun
+            Mağazası</span><span>Kütüphane</span><span>Topluluk & Lobi</span><span>Animasyonlu Rozetler</span><span>VIP
+            Lisans</span><span>Yama Kontrolü</span><span>Hızlı Arama</span>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ─── BENTO GRID FEATURES ─── -->
@@ -2228,90 +2265,1383 @@
           <span>RedLabel Özellikleri</span>
         </div>
         <h2>Her şey tek yerde,<br><span class="gradient-title">kullanması çok kolay.</span></h2>
-        <p>Oyunlarını açmak, Türkçe yama kurmak ve bilgisayarını oyuna hazırlamak için ayrı programlar aramana gerek yok. Hepsi tek uygulamada, sade bir arayüzde.</p>
+        <p>Oyunlarını açmak, Türkçe yama kurmak ve bilgisayarını oyuna hazırlamak için ayrı programlar aramana gerek
+          yok. Hepsi tek uygulamada, sade bir arayüzde.</p>
       </div>
 
       <div class="bento-grid">
-        <div class="bento-card bento-wide">
-          <div class="bento-icon icon-cyan">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="m5 8 6 6" />
-              <path d="m4 14 6-6 2-3" />
-              <path d="M2 5h12" />
-              <path d="M7 2h1" />
-              <path d="m22 22-5-10-5 10" />
-              <path d="M14 18h6" />
-            </svg>
+        <!-- Card 1: Steam Oyunlarına Tek Uygulamadan Eriş (Wide) -->
+        <div class="bento-card bento-wide bento-card-1">
+          <div class="bento-content">
+            <div class="bento-card-header">
+              <div class="bento-icon icon-cyan">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2" />
+                  <line x1="8" y1="21" x2="16" y2="21" />
+                  <line x1="12" y1="17" x2="12" y2="21" />
+                </svg>
+              </div>
+              <h3 class="bento-title">
+                Steam Oyunlarına<br>
+                <span class="bento-highlight-cyan">Tek Uygulamadan Eriş</span>
+              </h3>
+              <p class="bento-desc">
+                Steam'deki oyunları tek bir uygulama üzerinden keşfet, seç ve oynamaya başla. Karmaşık işlemlerle
+                uğraşmadan oyun dünyasına hızlıca eriş.
+              </p>
+            </div>
+            <div class="bento-tags">
+              <span class="bento-tag tag-cyan">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                </svg>
+                Steam Entegrasyonu
+              </span>
+              <span class="bento-tag tag-cyan">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 12 20 22 4 22 4 12" />
+                  <rect x="2" y="7" width="20" height="5" />
+                </svg>
+                Ücretsiz Erişim
+              </span>
+              <span class="bento-tag tag-cyan">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="5 3 19 12 5 21 5 3" />
+                </svg>
+                Tek Tıkla Başlat
+              </span>
+              <span class="bento-tag tag-cyan">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <rect x="3" y="3" width="7" height="7" />
+                  <rect x="14" y="3" width="7" height="7" />
+                  <rect x="14" y="14" width="7" height="7" />
+                  <rect x="3" y="14" width="7" height="7" />
+                </svg>
+                Geniş Oyun Kataloğu
+              </span>
+            </div>
           </div>
-          <h3 class="bento-title">Steam Kütüphane Yönetimi & Canlı Entegratör</h3>
-          <p class="bento-desc">Steam'deki oyunları tek uygulama üzerinden keşfet, seç ve oynamaya başla. Oyunları doğrudan istemciden başlat; oynama sürelerini, DLC paketlerini ve başarımlarını canlı takip et.</p>
-          <div class="bento-tags">
-            <span class="bento-tag">Bulut Senkronu</span>
-            <span class="bento-tag">DLC Yönetimi</span>
-            <span class="bento-tag">Oynama Süresi</span>
-            <span class="bento-tag">Hızlı Başlatıcı</span>
+          <!-- 3-Column Heavily Slanted Dense Moving Steam Game Ticker (No Steam Hub Badge) -->
+          <div class="bento-gw-viewport" aria-hidden="true">
+            <div class="bento-gw-slant">
+              <div class="bento-gw-col bento-gw-up">
+                <div class="bento-gw-group">
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/292030/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1086940/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1593500/header.jpg"
+                      alt="" loading="lazy"></div>
+                </div>
+                <div class="bento-gw-group">
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/292030/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1086940/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1593500/header.jpg"
+                      alt="" loading="lazy"></div>
+                </div>
+                <div class="bento-gw-group">
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/292030/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1086940/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1593500/header.jpg"
+                      alt="" loading="lazy"></div>
+                </div>
+              </div>
+              <div class="bento-gw-col bento-gw-down">
+                <div class="bento-gw-group">
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/271590/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/730/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/814380/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1938090/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1551360/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1888930/header.jpg"
+                      alt="" loading="lazy"></div>
+                </div>
+                <div class="bento-gw-group">
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/271590/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/730/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/814380/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1938090/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1551360/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1888930/header.jpg"
+                      alt="" loading="lazy"></div>
+                </div>
+                <div class="bento-gw-group">
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/271590/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/730/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/814380/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1938090/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1551360/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1888930/header.jpg"
+                      alt="" loading="lazy"></div>
+                </div>
+              </div>
+              <div class="bento-gw-col bento-gw-up">
+                <div class="bento-gw-group">
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/550/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/440/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/105600/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/413150/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/374320/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1203220/header.jpg"
+                      alt="" loading="lazy"></div>
+                </div>
+                <div class="bento-gw-group">
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/550/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/440/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/105600/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/413150/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/374320/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1203220/header.jpg"
+                      alt="" loading="lazy"></div>
+                </div>
+                <div class="bento-gw-group">
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/550/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/440/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/105600/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/413150/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/374320/header.jpg"
+                      alt="" loading="lazy"></div>
+                  <div class="bento-gw-card"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1203220/header.jpg"
+                      alt="" loading="lazy"></div>
+                </div>
+              </div>
+            </div>
+            <div class="bento-gw-fade"></div>
           </div>
         </div>
 
-        <div class="bento-card">
-          <div class="bento-icon icon-cyan">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="3" width="20" height="14" rx="2" />
-              <line x1="8" y1="21" x2="16" y2="21" />
-              <line x1="12" y1="17" x2="12" y2="21" />
-            </svg>
+        <!-- Card 2: Tek Tıkla Türkçe Yama -->
+        <div class="bento-card bento-card-2">
+          <div class="bento-content">
+            <div class="bento-card-header">
+              <div class="bento-icon icon-red">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="m5 8 6 6" />
+                  <path d="m4 14 6-6 2-3" />
+                  <path d="M2 5h12" />
+                  <path d="M7 2h1" />
+                  <path d="m22 22-5-10-5 10" />
+                  <path d="M14 18h6" />
+                </svg>
+              </div>
+              <h3 class="bento-title">
+                Tek Tıkla <span class="bento-highlight-red">Türkçe Yama</span>
+              </h3>
+              <p class="bento-desc">
+                Sürekli güncellenen yama kütüphanesi. Oyun dizini aramadan tek tıkla otomatik dil dosyası montajı.
+              </p>
+            </div>
+            <div class="bento-tags">
+              <span class="bento-tag tag-red">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <circle cx="12" cy="12" r="3" />
+                  <path
+                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                </svg>
+                Otomatik Algılama
+              </span>
+              <span class="bento-tag tag-red">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                </svg>
+                Dahili Arşiv
+              </span>
+            </div>
           </div>
-          <h3 class="bento-title">Tek Tıkla Türkçe Yama</h3>
-          <p class="bento-desc">Sürekli güncellenen yama kütüphanesi. Oyun dizini aramadan tek tıkla otomatik dil dosyası montajı.</p>
-          <div class="bento-tags">
-            <span class="bento-tag">Otomatik Algılama</span>
-            <span class="bento-tag">Dahili Arşiv</span>
+          <!-- 3D Angled Patched Games Stream (Like Card 1, Red Accent) -->
+          <div class="bento-tr-viewport" aria-hidden="true">
+            <div class="bento-tr-slant">
+              <div class="bento-gw-col bento-gw-down">
+                <div class="bento-gw-group">
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/292030/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">%100 TR YAMA</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR DUBLAJ</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR ALTYAZI</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1086940/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">RESMİ TR DİL</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1888930/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">%100 TR YAMA</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/990080/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR YAMA</span>
+                  </div>
+                </div>
+                <div class="bento-gw-group">
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/292030/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">%100 TR YAMA</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR DUBLAJ</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR ALTYAZI</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1086940/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">RESMİ TR DİL</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1888930/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">%100 TR YAMA</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/990080/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR YAMA</span>
+                  </div>
+                </div>
+                <div class="bento-gw-group">
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/292030/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">%100 TR YAMA</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR DUBLAJ</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR ALTYAZI</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1086940/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">RESMİ TR DİL</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1888930/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">%100 TR YAMA</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/990080/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR YAMA</span>
+                  </div>
+                </div>
+              </div>
+              <div class="bento-gw-col bento-gw-up">
+                <div class="bento-gw-group">
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1817070/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR YAMA</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/814380/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR ÇEVİRİ</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1593500/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR SESLENDİRME</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/271590/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR SENARYO</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR YAMA</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/2050650/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR ALTYAZI</span>
+                  </div>
+                </div>
+                <div class="bento-gw-group">
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1817070/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR YAMA</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/814380/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR ÇEVİRİ</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1593500/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR SESLENDİRME</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/271590/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR SENARYO</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR YAMA</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/2050650/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR ALTYAZI</span>
+                  </div>
+                </div>
+                <div class="bento-gw-group">
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1817070/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR YAMA</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/814380/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR ÇEVİRİ</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1593500/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR SESLENDİRME</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/271590/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR SENARYO</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR YAMA</span>
+                  </div>
+                  <div class="bento-tr-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/2050650/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tr-tag">TR ALTYAZI</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bento-tr-fade"></div>
           </div>
         </div>
 
-        <div class="bento-card">
-          <div class="bento-icon icon-indigo">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-            </svg>
+        <!-- Card 3: TurboBoost Donanım & Ağ Motoru -->
+        <div class="bento-card bento-card-3">
+          <div class="bento-content">
+            <div class="bento-card-header">
+              <div class="bento-icon icon-purple">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg>
+              </div>
+              <h3 class="bento-title">
+                <span class="bento-highlight-purple">TurboBoost</span> Donanım & Ağ Motoru
+              </h3>
+              <p class="bento-desc">
+                Tek tıkla arka plan RAM temizliği, düşük gecikmeli DNS optimizasyonu ve oyun modunda maksimum FPS.
+              </p>
+            </div>
+            <div class="bento-tags">
+              <span class="bento-tag tag-purple">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <rect x="4" y="4" width="16" height="16" rx="2" />
+                  <rect x="9" y="9" width="6" height="6" />
+                </svg>
+                RAM Clean
+              </span>
+              <span class="bento-tag tag-purple">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+                  <path d="M1.42 9a16 16 0 0 1 21.16 0" />
+                  <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+                  <line x1="12" y1="20" x2="12.01" y2="20" />
+                </svg>
+                Ping Düşürme
+              </span>
+              <span class="bento-tag tag-purple">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="18" y1="20" x2="18" y2="10" />
+                  <line x1="12" y1="20" x2="12" y2="4" />
+                  <line x1="6" y1="20" x2="6" y2="14" />
+                </svg>
+                FPS Boost
+              </span>
+            </div>
           </div>
-          <h3 class="bento-title">TurboBoost: Oyundan Önce Bilgisayarını Rahatlat</h3>
-          <p class="bento-desc">Oyun açılmadan önce arka planda boşuna çalışan uygulamaların tuttuğu belleği boşaltır ve internet ayarını oyuna uygun hale getirir. Amaç, daha akıcı bir oyun.</p>
-          <div class="bento-tags">
-            <span class="bento-tag">Bellek Temizliği</span>
-            <span class="bento-tag">DNS Ayarı</span>
-            <span class="bento-tag">Oyun Modu</span>
+          <!-- Floating Boost Badges -->
+          <div class="bento-floating-badges" aria-hidden="true">
+            <span class="bento-floating-badge badge-purple">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+              </svg>
+              299 FPS BOOST
+            </span>
+            <span class="bento-floating-badge badge-purple">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="6" x2="12" y2="12" />
+                <line x1="12" y1="12" x2="16" y2="14" />
+              </svg>
+              14 MS DNS
+            </span>
+          </div>
+          <!-- 3D Angled Benchmarked Games Stream (Purple Accent) -->
+          <div class="bento-tb-viewport" aria-hidden="true">
+            <div class="bento-tb-slant">
+              <div class="bento-gw-col bento-gw-down">
+                <div class="bento-gw-group">
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">+120 FPS BOOST</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1551360/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">165 FPS ULTRA</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">RAM TEMİZLENDİ</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1938090/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">14 MS SIFIR LAG</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">+95 FPS OPTİMİZE</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1716740/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">GPU HIZLANDIRMA</span>
+                  </div>
+                </div>
+                <div class="bento-gw-group">
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">+120 FPS BOOST</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1551360/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">165 FPS ULTRA</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">RAM TEMİZLENDİ</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1938090/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">14 MS SIFIR LAG</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">+95 FPS OPTİMİZE</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1716740/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">GPU HIZLANDIRMA</span>
+                  </div>
+                </div>
+                <div class="bento-gw-group">
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">+120 FPS BOOST</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1551360/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">165 FPS ULTRA</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">RAM TEMİZLENDİ</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1938090/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">14 MS SIFIR LAG</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">+95 FPS OPTİMİZE</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1716740/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">GPU HIZLANDIRMA</span>
+                  </div>
+                </div>
+              </div>
+              <div class="bento-gw-col bento-gw-up">
+                <div class="bento-gw-group">
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/730/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">360 FPS AKTİF</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1172470/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">MİNİMUM DROPS</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1817070/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">DLSS 3 FRAME GEN</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/271590/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">ULTRA STABLE</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/252490/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">DÜŞÜK PING</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1593500/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">+110 FPS BOOST</span>
+                  </div>
+                </div>
+                <div class="bento-gw-group">
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/730/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">360 FPS AKTİF</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1172470/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">MİNİMUM DROPS</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1817070/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">DLSS 3 FRAME GEN</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/271590/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">ULTRA STABLE</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/252490/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">DÜŞÜK PING</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1593500/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">+110 FPS BOOST</span>
+                  </div>
+                </div>
+                <div class="bento-gw-group">
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/730/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">360 FPS AKTİF</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1172470/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">MİNİMUM DROPS</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1817070/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">DLSS 3 FRAME GEN</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/271590/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">ULTRA STABLE</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/252490/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">DÜŞÜK PING</span>
+                  </div>
+                  <div class="bento-tb-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1593500/header.jpg" alt="" loading="lazy">
+                    <span class="bento-tb-tag">+110 FPS BOOST</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bento-tb-fade"></div>
           </div>
         </div>
 
-        <div class="bento-card">
-          <div class="bento-icon icon-green">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-            </svg>
+        <!-- Card 4: SteamFix & OnlineFix Çok Oyunculu -->
+        <div class="bento-card bento-card-4">
+          <div class="bento-content">
+            <div class="bento-card-header">
+              <div class="bento-icon icon-green">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
+              <h3 class="bento-title">
+                <span class="bento-highlight-green">SteamFix & OnlineFix</span> Çok Oyunculu
+              </h3>
+              <p class="bento-desc">
+                Arkadaşlarınızla kesintisiz coop ve multiplayer oyun seansları. Otomatik oyun dosyası onarıcı ve entegre
+                lobi desteği.
+              </p>
+            </div>
+            <div class="bento-tags">
+              <span class="bento-tag tag-green">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path
+                    d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+                </svg>
+                Online Fix
+              </span>
+              <span class="bento-tag tag-green">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+                Co-op Odaları
+              </span>
+              <span class="bento-tag tag-green">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21.5 2v6h-6" />
+                  <path d="M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
+                </svg>
+                Otomatik Onarım
+              </span>
+            </div>
           </div>
-          <h3 class="bento-title">Onarım Araçları & Çok Oyunculu Lobi</h3>
-          <p class="bento-desc">Oyunun açılmasını engelleyen yaygın sorunları tarar ve düzeltmeyi dener. Arkadaşlarınla buluşabileceğin topluluk odaları uygulamanın içinde hazır bekler.</p>
-          <div class="bento-tags">
-            <span class="bento-tag">Oyun Onarımı</span>
-            <span class="bento-tag">Topluluk Odaları</span>
-            <span class="bento-tag">Co-op Lobi</span>
+          <!-- Tactical Floating Badges -->
+          <div class="bento-floating-badges" aria-hidden="true">
+            <span class="bento-floating-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+              </svg>
+              CO-OP
+            </span>
+            <span class="bento-floating-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+              </svg>
+              MULTIPLAYER
+            </span>
+            <span class="bento-floating-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              LOBİ DESTEĞİ
+            </span>
+          </div>
+          <!-- 3D Angled Co-op Games Stream (Green Accent) -->
+          <div class="bento-coop-viewport" aria-hidden="true">
+            <div class="bento-coop-slant">
+              <div class="bento-gw-col bento-gw-up">
+                <div class="bento-gw-group">
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/730/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">ONLINEFIX AKTİF</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1938090/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">P2P TÜNEL</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/550/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">4P CO-OP</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1623730/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">SERVER AKTİF</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/218620/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">TAM FIX</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1966720/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">LOBİ DESTEĞİ</span>
+                  </div>
+                </div>
+                <div class="bento-gw-group">
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/730/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">ONLINEFIX AKTİF</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1938090/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">P2P TÜNEL</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/550/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">4P CO-OP</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1623730/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">SERVER AKTİF</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/218620/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">TAM FIX</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1966720/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">LOBİ DESTEĞİ</span>
+                  </div>
+                </div>
+                <div class="bento-gw-group">
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/730/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">ONLINEFIX AKTİF</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1938090/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">P2P TÜNEL</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/550/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">4P CO-OP</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1623730/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">SERVER AKTİF</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/218620/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">TAM FIX</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1966720/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">LOBİ DESTEĞİ</span>
+                  </div>
+                </div>
+              </div>
+              <div class="bento-gw-col bento-gw-down">
+                <div class="bento-gw-group">
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/271590/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">LOBİ AKTİF</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/582010/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">0MS DROP</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/440/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">ONLINEFIX</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/252490/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">CROSSPLAY</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/739630/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">CO-OP ODALARI</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/534380/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">OTOMATİK FIX</span>
+                  </div>
+                </div>
+                <div class="bento-gw-group">
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/271590/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">LOBİ AKTİF</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/582010/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">0MS DROP</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/440/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">ONLINEFIX</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/252490/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">CROSSPLAY</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/739630/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">CO-OP ODALARI</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/534380/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">OTOMATİK FIX</span>
+                  </div>
+                </div>
+                <div class="bento-gw-group">
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/271590/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">LOBİ AKTİF</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/582010/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">0MS DROP</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/440/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">ONLINEFIX</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/252490/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">CROSSPLAY</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/739630/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">CO-OP ODALARI</span>
+                  </div>
+                  <div class="bento-coop-card">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/534380/header.jpg" alt="" loading="lazy">
+                    <span class="bento-coop-tag">OTOMATİK FIX</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bento-coop-fade"></div>
           </div>
         </div>
 
-        <div class="bento-card">
-          <div class="bento-icon icon-cyan">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="8" r="4" />
-              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
-            </svg>
+        <!-- Card 5: Özelleştirilebilir Profil & Rozetler -->
+        <div class="bento-card bento-card-5">
+          <div class="bento-content">
+            <div class="bento-card-header">
+              <div class="bento-icon icon-cyan">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                </svg>
+              </div>
+              <h3 class="bento-title">
+                Özelleştirilebilir <span class="bento-highlight-cyan">Profil & Rozetler</span>
+              </h3>
+              <p class="bento-desc">
+                GIF banner, animasyonlu avatarlar, unvanlar ve başarım vitrini ile RedLabel topluluğunda öne çıkın.
+              </p>
+            </div>
+            <div class="bento-tags">
+              <span class="bento-tag tag-cyan">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21 15 16 10 5 21" />
+                </svg>
+                GIF Banner
+              </span>
+              <span class="bento-tag tag-cyan">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <circle cx="12" cy="8" r="6" />
+                  <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+                </svg>
+                Rozet Sistemi
+              </span>
+              <span class="bento-tag tag-cyan">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="18" y1="20" x2="18" y2="10" />
+                  <line x1="12" y1="20" x2="12" y2="4" />
+                  <line x1="6" y1="20" x2="6" y2="14" />
+                </svg>
+                XP & Seviye
+              </span>
+            </div>
           </div>
-          <h3 class="bento-title">Özelleştirilebilir Profil & Rozetler</h3>
-          <p class="bento-desc">GIF banner, avatar, unvan ve rozetlerini sen seç. Oynadıkça XP kazan, seviye atla ve toplulukta öne çık.</p>
-          <div class="bento-tags">
-            <span class="bento-tag">GIF Banner</span>
-            <span class="bento-tag">Rozet Sistemi</span>
-            <span class="bento-tag">XP & Seviye</span>
+          <!-- Floating Badges -->
+          <div class="bento-floating-badges" aria-hidden="true">
+            <span class="bento-floating-badge badge-cyan">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="8" r="6" />
+                <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+              </svg>
+              VIP ROZET
+            </span>
+            <span class="bento-floating-badge badge-cyan">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg>
+              LVL 80
+            </span>
+          </div>
+          <!-- 3D Angled Gamer Profiles Stream (Cyan Accent) -->
+          <div class="bento-prof-viewport" aria-hidden="true">
+            <div class="bento-prof-slant">
+              <div class="bento-gw-col bento-gw-up">
+                <div class="bento-gw-group">
+                  <div class="bento-prof-mini-card">
+                    <div class="bpmc-avatar halo-gold">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                      </svg>
+                    </div>
+                    <div class="bpmc-info">
+                      <div class="bpmc-name">CYBER_PHOENIX</div>
+                      <div class="bpmc-role">ELITE OVERLORD</div>
+                      <span class="bpmc-lvl gold">LVL 80</span>
+                    </div>
+                  </div>
+                  <div class="bento-prof-mini-card">
+                    <div class="bpmc-avatar halo-cyan">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                      </svg>
+                    </div>
+                    <div class="bpmc-info">
+                      <div class="bpmc-name">NIGHT_RAIDER</div>
+                      <div class="bpmc-role">BETA FOUNDER</div>
+                      <span class="bpmc-lvl cyan">LVL 65</span>
+                    </div>
+                  </div>
+                  <div class="bento-prof-mini-card">
+                    <div class="bpmc-avatar halo-purple">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                      </svg>
+                    </div>
+                    <div class="bpmc-info">
+                      <div class="bpmc-name">SHADOW_VALK</div>
+                      <div class="bpmc-role">TOP COLLECTOR</div>
+                      <span class="bpmc-lvl purple">LVL 99</span>
+                    </div>
+                  </div>
+                  <div class="bento-prof-mini-card">
+                    <div class="bpmc-avatar halo-green">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      </svg>
+                    </div>
+                    <div class="bpmc-info">
+                      <div class="bpmc-name">APEX_HUNTER</div>
+                      <div class="bpmc-role">LOBBY MASTER</div>
+                      <span class="bpmc-lvl green">LVL 88</span>
+                    </div>
+                  </div>
+                  <div class="bento-prof-mini-card">
+                    <div class="bpmc-avatar halo-red">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                      </svg>
+                    </div>
+                    <div class="bpmc-info">
+                      <div class="bpmc-name">NEO_GLITCH</div>
+                      <div class="bpmc-role">PRO GAMER</div>
+                      <span class="bpmc-lvl red">LVL 75</span>
+                    </div>
+                  </div>
+                  <div class="bento-prof-mini-card">
+                    <div class="bpmc-avatar halo-gold">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="8" r="6" />
+                        <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+                      </svg>
+                    </div>
+                    <div class="bpmc-info">
+                      <div class="bpmc-name">CHRONO_VIP</div>
+                      <div class="bpmc-role">KURUCU ÜYE</div>
+                      <span class="bpmc-lvl gold">LVL 100</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="bento-gw-group">
+                  <div class="bento-prof-mini-card">
+                    <div class="bpmc-avatar halo-gold">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                      </svg>
+                    </div>
+                    <div class="bpmc-info">
+                      <div class="bpmc-name">CYBER_PHOENIX</div>
+                      <div class="bpmc-role">ELITE OVERLORD</div>
+                      <span class="bpmc-lvl gold">LVL 80</span>
+                    </div>
+                  </div>
+                  <div class="bento-prof-mini-card">
+                    <div class="bpmc-avatar halo-cyan">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                      </svg>
+                    </div>
+                    <div class="bpmc-info">
+                      <div class="bpmc-name">NIGHT_RAIDER</div>
+                      <div class="bpmc-role">BETA FOUNDER</div>
+                      <span class="bpmc-lvl cyan">LVL 65</span>
+                    </div>
+                  </div>
+                  <div class="bento-prof-mini-card">
+                    <div class="bpmc-avatar halo-purple">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                      </svg>
+                    </div>
+                    <div class="bpmc-info">
+                      <div class="bpmc-name">SHADOW_VALK</div>
+                      <div class="bpmc-role">TOP COLLECTOR</div>
+                      <span class="bpmc-lvl purple">LVL 99</span>
+                    </div>
+                  </div>
+                  <div class="bento-prof-mini-card">
+                    <div class="bpmc-avatar halo-green">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      </svg>
+                    </div>
+                    <div class="bpmc-info">
+                      <div class="bpmc-name">APEX_HUNTER</div>
+                      <div class="bpmc-role">LOBBY MASTER</div>
+                      <span class="bpmc-lvl green">LVL 88</span>
+                    </div>
+                  </div>
+                  <div class="bento-prof-mini-card">
+                    <div class="bpmc-avatar halo-red">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                      </svg>
+                    </div>
+                    <div class="bpmc-info">
+                      <div class="bpmc-name">NEO_GLITCH</div>
+                      <div class="bpmc-role">PRO GAMER</div>
+                      <span class="bpmc-lvl red">LVL 75</span>
+                    </div>
+                  </div>
+                  <div class="bento-prof-mini-card">
+                    <div class="bpmc-avatar halo-gold">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="8" r="6" />
+                        <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+                      </svg>
+                    </div>
+                    <div class="bpmc-info">
+                      <div class="bpmc-name">CHRONO_VIP</div>
+                      <div class="bpmc-role">KURUCU ÜYE</div>
+                      <span class="bpmc-lvl gold">LVL 100</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="bento-gw-group">
+                  <div class="bento-prof-mini-card">
+                    <div class="bpmc-avatar halo-gold">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                      </svg>
+                    </div>
+                    <div class="bpmc-info">
+                      <div class="bpmc-name">CYBER_PHOENIX</div>
+                      <div class="bpmc-role">ELITE OVERLORD</div>
+                      <span class="bpmc-lvl gold">LVL 80</span>
+                    </div>
+                  </div>
+                  <div class="bento-prof-mini-card">
+                    <div class="bpmc-avatar halo-cyan">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                      </svg>
+                    </div>
+                    <div class="bpmc-info">
+                      <div class="bpmc-name">NIGHT_RAIDER</div>
+                      <div class="bpmc-role">BETA FOUNDER</div>
+                      <span class="bpmc-lvl cyan">LVL 65</span>
+                    </div>
+                  </div>
+                  <div class="bento-prof-mini-card">
+                    <div class="bpmc-avatar halo-purple">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                      </svg>
+                    </div>
+                    <div class="bpmc-info">
+                      <div class="bpmc-name">SHADOW_VALK</div>
+                      <div class="bpmc-role">TOP COLLECTOR</div>
+                      <span class="bpmc-lvl purple">LVL 99</span>
+                    </div>
+                  </div>
+                  <div class="bento-prof-mini-card">
+                    <div class="bpmc-avatar halo-green">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      </svg>
+                    </div>
+                    <div class="bpmc-info">
+                      <div class="bpmc-name">APEX_HUNTER</div>
+                      <div class="bpmc-role">LOBBY MASTER</div>
+                      <span class="bpmc-lvl green">LVL 88</span>
+                    </div>
+                  </div>
+                  <div class="bento-prof-mini-card">
+                    <div class="bpmc-avatar halo-red">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                      </svg>
+                    </div>
+                    <div class="bpmc-info">
+                      <div class="bpmc-name">NEO_GLITCH</div>
+                      <div class="bpmc-role">PRO GAMER</div>
+                      <span class="bpmc-lvl red">LVL 75</span>
+                    </div>
+                  </div>
+                  <div class="bento-prof-mini-card">
+                    <div class="bpmc-avatar halo-gold">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="8" r="6" />
+                        <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+                      </svg>
+                    </div>
+                    <div class="bpmc-info">
+                      <div class="bpmc-name">CHRONO_VIP</div>
+                      <div class="bpmc-role">KURUCU ÜYE</div>
+                      <span class="bpmc-lvl gold">LVL 100</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bento-gw-col bento-gw-down">
+                <div class="bento-gw-group">
+                  <div class="bento-prof-badge-card">
+                    <div class="bpbc-icon gold">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                      </svg>
+                    </div>
+                    <div class="bpbc-info">
+                      <div class="bpbc-title">VIP ROZETİ</div>
+                      <div class="bpbc-desc">Özel Client</div>
+                    </div>
+                  </div>
+                  <div class="bento-prof-badge-card">
+                    <div class="bpbc-icon cyan">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                      </svg>
+                    </div>
+                    <div class="bpbc-info">
+                      <div class="bpbc-title">BETA ÖNCÜSÜ</div>
+                      <div class="bpbc-desc">İlk 1000 Üye</div>
+                    </div>
+                  </div>
+                  <div class="bento-prof-badge-card">
+                    <div class="bpbc-icon purple">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <circle cx="12" cy="8" r="6" />
+                        <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+                      </svg>
+                    </div>
+                    <div class="bpbc-info">
+                      <div class="bpbc-title">KOLEKSİYONER</div>
+                      <div class="bpbc-desc">100+ Oyun</div>
+                    </div>
+                  </div>
+                  <div class="bento-prof-badge-card">
+                    <div class="bpbc-icon green">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      </svg>
+                    </div>
+                    <div class="bpbc-info">
+                      <div class="bpbc-title">LOBİ LİDERİ</div>
+                      <div class="bpbc-desc">Kesintisiz Host</div>
+                    </div>
+                  </div>
+                  <div class="bento-prof-badge-card">
+                    <div class="bpbc-icon gold">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                      </svg>
+                    </div>
+                    <div class="bpbc-info">
+                      <div class="bpbc-title">KURUCU ÜYE</div>
+                      <div class="bpbc-desc">Erken Destekçi</div>
+                    </div>
+                  </div>
+                  <div class="bento-prof-badge-card">
+                    <div class="bpbc-icon red">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="2" y1="12" x2="22" y2="12" />
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                      </svg>
+                    </div>
+                    <div class="bpbc-info">
+                      <div class="bpbc-title">ELITE GAMER</div>
+                      <div class="bpbc-desc">99+ Başarım</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="bento-gw-group">
+                  <div class="bento-prof-badge-card">
+                    <div class="bpbc-icon gold">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                      </svg>
+                    </div>
+                    <div class="bpbc-info">
+                      <div class="bpbc-title">VIP ROZETİ</div>
+                      <div class="bpbc-desc">Özel Client</div>
+                    </div>
+                  </div>
+                  <div class="bento-prof-badge-card">
+                    <div class="bpbc-icon cyan">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                      </svg>
+                    </div>
+                    <div class="bpbc-info">
+                      <div class="bpbc-title">BETA ÖNCÜSÜ</div>
+                      <div class="bpbc-desc">İlk 1000 Üye</div>
+                    </div>
+                  </div>
+                  <div class="bento-prof-badge-card">
+                    <div class="bpbc-icon purple">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <circle cx="12" cy="8" r="6" />
+                        <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+                      </svg>
+                    </div>
+                    <div class="bpbc-info">
+                      <div class="bpbc-title">KOLEKSİYONER</div>
+                      <div class="bpbc-desc">100+ Oyun</div>
+                    </div>
+                  </div>
+                  <div class="bento-prof-badge-card">
+                    <div class="bpbc-icon green">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      </svg>
+                    </div>
+                    <div class="bpbc-info">
+                      <div class="bpbc-title">LOBİ LİDERİ</div>
+                      <div class="bpbc-desc">Kesintisiz Host</div>
+                    </div>
+                  </div>
+                  <div class="bento-prof-badge-card">
+                    <div class="bpbc-icon gold">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                      </svg>
+                    </div>
+                    <div class="bpbc-info">
+                      <div class="bpbc-title">KURUCU ÜYE</div>
+                      <div class="bpbc-desc">Erken Destekçi</div>
+                    </div>
+                  </div>
+                  <div class="bento-prof-badge-card">
+                    <div class="bpbc-icon red">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="2" y1="12" x2="22" y2="12" />
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                      </svg>
+                    </div>
+                    <div class="bpbc-info">
+                      <div class="bpbc-title">ELITE GAMER</div>
+                      <div class="bpbc-desc">99+ Başarım</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="bento-gw-group">
+                  <div class="bento-prof-badge-card">
+                    <div class="bpbc-icon gold">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                      </svg>
+                    </div>
+                    <div class="bpbc-info">
+                      <div class="bpbc-title">VIP ROZETİ</div>
+                      <div class="bpbc-desc">Özel Client</div>
+                    </div>
+                  </div>
+                  <div class="bento-prof-badge-card">
+                    <div class="bpbc-icon cyan">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                      </svg>
+                    </div>
+                    <div class="bpbc-info">
+                      <div class="bpbc-title">BETA ÖNCÜSÜ</div>
+                      <div class="bpbc-desc">İlk 1000 Üye</div>
+                    </div>
+                  </div>
+                  <div class="bento-prof-badge-card">
+                    <div class="bpbc-icon purple">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <circle cx="12" cy="8" r="6" />
+                        <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+                      </svg>
+                    </div>
+                    <div class="bpbc-info">
+                      <div class="bpbc-title">KOLEKSİYONER</div>
+                      <div class="bpbc-desc">100+ Oyun</div>
+                    </div>
+                  </div>
+                  <div class="bento-prof-badge-card">
+                    <div class="bpbc-icon green">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      </svg>
+                    </div>
+                    <div class="bpbc-info">
+                      <div class="bpbc-title">LOBİ LİDERİ</div>
+                      <div class="bpbc-desc">Kesintisiz Host</div>
+                    </div>
+                  </div>
+                  <div class="bento-prof-badge-card">
+                    <div class="bpbc-icon gold">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                      </svg>
+                    </div>
+                    <div class="bpbc-info">
+                      <div class="bpbc-title">KURUCU ÜYE</div>
+                      <div class="bpbc-desc">Erken Destekçi</div>
+                    </div>
+                  </div>
+                  <div class="bento-prof-badge-card">
+                    <div class="bpbc-icon red">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="2" y1="12" x2="22" y2="12" />
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                      </svg>
+                    </div>
+                    <div class="bpbc-info">
+                      <div class="bpbc-title">ELITE GAMER</div>
+                      <div class="bpbc-desc">99+ Başarım</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bento-prof-fade"></div>
           </div>
         </div>
       </div>
@@ -2331,118 +3661,241 @@
 
       <div class="pricing-grid">
         <!-- Standart / Ücretsiz -->
-        <div class="pricing-card">
+        <div class="pricing-card pricing-card-free">
+          <div class="pricing-badge-tier free">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            <span>ÜCRETSİZ BAŞLANGIÇ</span>
+          </div>
           <div class="plan-tier-name">Standart Erişim</div>
-          <div class="plan-tagline">Temel oyun yönetimi ve kütüphane</div>
-          <div class="plan-price">Ücretsiz</div>
+          <div class="plan-tagline">Temel oyun yönetimi ve topluluk özellikleri</div>
+          <div class="plan-price-wrap">
+            <span class="plan-price-num">0 ₺</span>
+            <span class="plan-price-period">/ Daima Ücretsiz</span>
+          </div>
           <ul class="plan-features">
             <li class="plan-feature-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
+              <span class="plan-feature-icon">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </span>
               <span>Steam Kütüphane Yöneticisi</span>
             </li>
             <li class="plan-feature-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
+              <span class="plan-feature-icon">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </span>
               <span>Temel Türkçe Yamalar</span>
             </li>
             <li class="plan-feature-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
+              <span class="plan-feature-icon">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </span>
               <span>Topluluk & Arkadaş Listesi</span>
             </li>
             <li class="plan-feature-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
+              <span class="plan-feature-icon">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </span>
               <span>Temel TurboBoost Optimizasyonu</span>
             </li>
+            <li class="plan-feature-item">
+              <span class="plan-feature-icon">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </span>
+              <span>Standart Topluluk Desteği</span>
+            </li>
           </ul>
-          <a href="https://discord.gg/Hek9SQJstW" target="_blank" rel="noopener noreferrer" class="btn-plan">
+          <a href="https://discord.gg/Hek9SQJstW" target="_blank" rel="noopener noreferrer"
+            class="btn-plan btn-plan-free">
             <span>Hemen Başla</span>
           </a>
         </div>
 
         <!-- Premium VIP (Öne Çıkan) -->
-        <div class="pricing-card featured">
-          <div class="pricing-badge">En Çok Tercih Edilen</div>
+        <div class="pricing-card featured pricing-card-vip">
+          <div class="pricing-badge-popular">
+            <span>EN ÇOK TERCİH EDİLEN</span>
+          </div>
+          <div class="pricing-badge-tier vip">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+              <polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+            </svg>
+            <span>VIP LİSANS</span>
+          </div>
           <div class="plan-tier-name">RedLabel VIP</div>
-          <div class="plan-tagline">Eksiksiz deneyim ve tam arşiv erişimi</div>
-          <div class="plan-price">VIP Lisans</div>
+          <div class="plan-tagline">Eksiksiz deneyim ve sınırsız tam arşiv erişimi</div>
+          <div class="plan-price-wrap">
+            <span class="plan-price-num">VIP Lisans</span>
+            <span class="plan-price-period">/ Özel Rol & Yetkiler</span>
+          </div>
           <ul class="plan-features">
-            <li class="plan-feature-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-              <span>Tüm Türkçe Yama Arşivine Sınırsız Erişim</span>
+            <li class="plan-feature-item highlight">
+              <span class="plan-feature-icon">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </span>
+              <span><strong>Tüm Türkçe Yama Arşivine Sınırsız Erişim</strong></span>
+            </li>
+            <li class="plan-feature-item highlight">
+              <span class="plan-feature-icon">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </span>
+              <span><strong>Onarım Araçları Otomatik Güncelleme</strong></span>
+            </li>
+            <li class="plan-feature-item highlight">
+              <span class="plan-feature-icon">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </span>
+              <span><strong>Gelişmiş TurboBoost (RAM + DNS + FPS)</strong></span>
+            </li>
+            <li class="plan-feature-item highlight">
+              <span class="plan-feature-icon">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </span>
+              <span><strong>Özel Discord VIP Rolü & Öncelikli Destek</strong></span>
+            </li>
+            <li class="plan-feature-item highlight">
+              <span class="plan-feature-icon">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </span>
+              <span><strong>Özel Rozetler & Animasyonlu GIF Profili</strong></span>
             </li>
             <li class="plan-feature-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-              <span>Onarım Araçları Otomatik Güncelleme</span>
-            </li>
-            <li class="plan-feature-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-              <span>Gelişmiş TurboBoost (RAM + DNS + FPS)</span>
-            </li>
-            <li class="plan-feature-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-              <span>Özel Discord VIP Rolü & Öncelikli Destek</span>
-            </li>
-            <li class="plan-feature-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-              <span>Özel Rozetler & Animasyonlu GIF Profili</span>
+              <span class="plan-feature-icon">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </span>
+              <span>VIP Lobi & Özel Turnuva Odaları</span>
             </li>
           </ul>
-          <a href="https://discord.gg/Hek9SQJstW" target="_blank" rel="noopener noreferrer" class="btn-plan">
+          <a href="https://discord.gg/Hek9SQJstW" target="_blank" rel="noopener noreferrer"
+            class="btn-plan btn-plan-vip">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" />
+            </svg>
             <span>Discord Üzerinden Satın Al</span>
           </a>
         </div>
 
         <!-- Ömür Boyu -->
-        <div class="pricing-card">
+        <div class="pricing-card pricing-card-lifetime">
+          <div class="pricing-badge-tier lifetime">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+              <polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+            </svg>
+            <span>TEK SEFERLİK ÖDEME</span>
+          </div>
           <div class="plan-tier-name">Ömür Boyu VIP</div>
-          <div class="plan-tagline">Kalıcı lisans ve tüm gelecek güncellemeler</div>
-          <div class="plan-price">Lifetime</div>
+          <div class="plan-tagline">Kalıcı lisans ve tüm gelecek güncellemeler dahil</div>
+          <div class="plan-price-wrap">
+            <span class="plan-price-num">Lifetime</span>
+            <span class="plan-price-period">/ Sonsuza Dek Sınırsız</span>
+          </div>
           <ul class="plan-features">
-            <li class="plan-feature-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-              <span>Ömür Boyu Sınırsız VIP Lisansı</span>
+            <li class="plan-feature-item highlight">
+              <span class="plan-feature-icon">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </span>
+              <span><strong>Ömür Boyu Sınırsız VIP Lisansı</strong></span>
+            </li>
+            <li class="plan-feature-item highlight">
+              <span class="plan-feature-icon">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </span>
+              <span><strong>Tüm Gelecek Sürümlere Ücretsiz Yükseltme</strong></span>
+            </li>
+            <li class="plan-feature-item highlight">
+              <span class="plan-feature-icon">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </span>
+              <span><strong>Özel Kurucu Rozeti & VIP Lobi Erişimi</strong></span>
+            </li>
+            <li class="plan-feature-item highlight">
+              <span class="plan-feature-icon">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </span>
+              <span><strong>7/24 Birebir Öncelikli Kurucu Desteği</strong></span>
             </li>
             <li class="plan-feature-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-              <span>Tüm Gelecek Sürümlere Ücretsiz Yükseltme</span>
+              <span class="plan-feature-icon">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </span>
+              <span>Yeni Modüllere & Beta Özelliklere Erken Erişim</span>
             </li>
             <li class="plan-feature-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-              <span>Özel Kurucu Rozeti & VIP Lobi Erişimi</span>
-            </li>
-            <li class="plan-feature-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-              <span>7/24 Birebir Öncelikli Destek</span>
+              <span class="plan-feature-icon">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </span>
+              <span>Sunucu İçi Özel Renkli Rol & Onur Listesi</span>
             </li>
           </ul>
-          <a href="https://discord.gg/Hek9SQJstW" target="_blank" rel="noopener noreferrer" class="btn-plan">
+          <a href="https://discord.gg/Hek9SQJstW" target="_blank" rel="noopener noreferrer"
+            class="btn-plan btn-plan-lifetime">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" />
+            </svg>
             <span>Discord'dan Bilgi Al</span>
           </a>
+        </div>
+      </div>
+
+      <!-- Trust Bar -->
+      <div class="pricing-trust-bar">
+        <div class="pricing-trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+          <span>7/24 Discord Canlı Destek</span>
+        </div>
+        <div class="pricing-trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+          </svg>
+          <span>Anında Rol & Lisans Tanımlama</span>
+        </div>
+        <div class="pricing-trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+          <span>%100 Güvenli & Ban Korumalı</span>
         </div>
       </div>
     </div>
@@ -2467,7 +3920,9 @@
             <div class="faq-icon-box" aria-hidden="true">+</div>
           </button>
           <div class="faq-content">
-            <p>Evet, %100 güvenlidir. RedLabel, Steam hesabınıza zarar verecek veya VAC/ban riskine yol açacak hiçbir üçüncü taraf bellek enjeksiyonu yapmaz. Tüm Türkçe yamalar ve entegrasyonlar yalnızca yerel dosyalar üzerinde güvenle çalışır.</p>
+            <p>Evet, %100 güvenlidir. RedLabel, Steam hesabınıza zarar verecek veya VAC/ban riskine yol açacak hiçbir
+              üçüncü taraf bellek enjeksiyonu yapmaz. Tüm Türkçe yamalar ve entegrasyonlar yalnızca yerel dosyalar
+              üzerinde güvenle çalışır.</p>
           </div>
         </div>
         <div class="faq-item">
@@ -2476,7 +3931,8 @@
             <div class="faq-icon-box" aria-hidden="true">+</div>
           </button>
           <div class="faq-content">
-            <p>RedLabel Tools; Windows 10 (64-bit) ve Windows 11 (64-bit) sistemlerle tam uyumludur. Gerekli tüm sistem kütüphaneleri otomatik olarak algılanır.</p>
+            <p>RedLabel Tools; Windows 10 (64-bit) ve Windows 11 (64-bit) sistemlerle tam uyumludur. Gerekli tüm sistem
+              kütüphaneleri otomatik olarak algılanır.</p>
           </div>
         </div>
         <div class="faq-item">
@@ -2485,7 +3941,9 @@
             <div class="faq-icon-box" aria-hidden="true">+</div>
           </button>
           <div class="faq-content">
-            <p>Oyunu seçip yama kontrolünü çalıştırman yeterli. RedLabel oyunun Türkçe yaması olup olmadığına bakar, varsa seni yamanın bulunduğu sayfaya yönlendirir. Yüzlerce yama tek listede, ücretsiz ve aramaya hazır; indirme ve kurulum adımları yama sayfasında anlatılır.</p>
+            <p>Oyunu seçip yama kontrolünü çalıştırman yeterli. RedLabel oyunun Türkçe yaması olup olmadığına bakar,
+              varsa seni yamanın bulunduğu sayfaya yönlendirir. Yüzlerce yama tek listede, ücretsiz ve aramaya hazır;
+              indirme ve kurulum adımları yama sayfasında anlatılır.</p>
           </div>
         </div>
         <div class="faq-item">
@@ -2494,7 +3952,8 @@
             <div class="faq-icon-box" aria-hidden="true">+</div>
           </button>
           <div class="faq-content">
-            <p>Discord sunucumuzdan aldığın lisans anahtarını istemcinin ilk açılış ekranına veya profil menüsündeki lisans bölümüne yapıştırman yeterli. Tek tıkla anında aktif edebilirsin.</p>
+            <p>Discord sunucumuzdan aldığın lisans anahtarını istemcinin ilk açılış ekranına veya profil menüsündeki
+              lisans bölümüne yapıştırman yeterli. Tek tıkla anında aktif edebilirsin.</p>
           </div>
         </div>
       </div>
@@ -2560,7 +4019,6 @@
 
       <div class="footer-bottom">
         <div>© 2026 RedLabel Tools. Tüm hakları saklıdır.</div>
-        <div>Designed for webmasterexe</div>
       </div>
     </div>
   </footer>
@@ -2667,7 +4125,7 @@
             '12 Farklı Kategori ve Akıllı Filtreleme',
             'Tek Tıkla Kütüphaneye ve Sepete Ekleme'
           ],
-          glow: 'radial-gradient(ellipse at 50% 30%, rgba(56, 189, 248, 0.3) 0%, rgba(14, 165, 233, 0.2) 45%, transparent 75%)'
+          glow: 'radial-gradient(ellipse at 50% 30%, rgba(56, 189, 248, 0.14) 0%, rgba(14, 165, 233, 0.08) 45%, transparent 75%)'
         },
         {
           id: 'tab-kutuphane',
@@ -2679,7 +4137,7 @@
             'Tek Tıkla Oyun Başlatma & Yama Durumu',
             'Otomatik DLC & Başarım Senkronu'
           ],
-          glow: 'radial-gradient(ellipse at 50% 30%, rgba(56, 189, 248, 0.35) 0%, rgba(99, 102, 241, 0.22) 45%, transparent 75%)'
+          glow: 'radial-gradient(ellipse at 50% 30%, rgba(56, 189, 248, 0.14) 0%, rgba(99, 102, 241, 0.08) 45%, transparent 75%)'
         },
         {
           id: 'tab-yamalar',
@@ -2691,7 +4149,7 @@
             'Yama Sayfasına Doğrudan Yönlendirme',
             'Arama ve Kategori Filtreleri'
           ],
-          glow: 'radial-gradient(ellipse at 50% 30%, rgba(56, 189, 248, 0.3) 0%, rgba(168, 85, 247, 0.22) 45%, transparent 75%)'
+          glow: 'radial-gradient(ellipse at 50% 30%, rgba(56, 189, 248, 0.14) 0%, rgba(168, 85, 247, 0.08) 45%, transparent 75%)'
         },
         {
           id: 'tab-topluluk',
@@ -2703,7 +4161,7 @@
             'Topluluk Odaları & Lobi',
             'Tek Tıkla Oyuna Doğrudan Davet'
           ],
-          glow: 'radial-gradient(ellipse at 50% 30%, rgba(34, 197, 94, 0.3) 0%, rgba(56, 189, 248, 0.22) 45%, transparent 75%)'
+          glow: 'radial-gradient(ellipse at 50% 30%, rgba(34, 197, 94, 0.14) 0%, rgba(56, 189, 248, 0.08) 45%, transparent 75%)'
         },
         {
           id: 'tab-profil',
@@ -2715,7 +4173,7 @@
             'Discord Onaylı Hesap & Rol Senkronu',
             'XP, Seviye ve Başarım Vitrini'
           ],
-          glow: 'radial-gradient(ellipse at 50% 30%, rgba(168, 85, 247, 0.32) 0%, rgba(56, 189, 248, 0.22) 45%, transparent 75%)'
+          glow: 'radial-gradient(ellipse at 50% 30%, rgba(168, 85, 247, 0.14) 0%, rgba(56, 189, 248, 0.08) 45%, transparent 75%)'
         }
       ];
 
@@ -2939,7 +4397,7 @@
       });
     })();
   </script>
-  <script src="enhance.js?v=47" defer></script>
+  <script src="enhance.js?v=59" defer></script>
 </body>
 
 </html>
